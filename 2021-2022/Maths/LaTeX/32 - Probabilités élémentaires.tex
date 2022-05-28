@@ -1,0 +1,123 @@
+\documentclass[12pt,a4paper]{report}
+
+\input{00 - preambule}
+
+\begin{document}
+
+\newcommand{\p}{\mathbb{P}}
+
+\section*{Introduction}
+
+La théorie des probabilités a pour objet la modélisation mathématique du hasard, des expériences aléatoires. \\
+Une expérience aléatoire est une expérience qui a plusieurs résultats possibles (on dit aussi issues) qu'on ne peut prévoir avec certitude, mais qui présente (c'est 
+crucial) une régularité statistique sur le long terme. Il est postulé ici notamment la possibilité de répéter l'expérience un grand nombre de fois, dans des 
+conditions identiques (dans l'idéal), de façon indépendante (les différentes répétitions n'ont aucune influence les unes sur les autres). \\
+On prend un exemple. Une des expériences aléatoires les plus simples est le jeu de pile ou face : lorsqu'on jette une pièce de monnaie et qu'on regarde quel côté de 
+la pièce apparaît, il n'y a que deux issues possibles (pile ou face), et on ne peut prévoir avec certitude quel côté de la pièce apparaît avant de l'avoir lancée. Si 
+on jette la même pièce un grand nombre de fois, il semble que la proportion du nombre de piles parmi le nombre total se rapproche d'un nombre fixe (0.5 en général si 
+la pièce est équilibrée, un autre nombre sinon), ce qui conduit à définir un nombre qui mesure le degré de vraisemblance d'apparition de pile pour un lancer donné 
+(c'est ce qu'on appellera la probabilité d'apparition de pile). Le fait que le hasard fonctionne ainsi résulte de l'expérience (vous pourriez chacun jeter 500 fois 
+une pièce de monnaie et consigner combien de fois vous avez obtenu pile dans la série de lancers ; si on fait la moyenne des 47 proportions obtenues, on ne sera pas 
+très loin de 0.5...) \\
+La modélisation mathématique des phénomènes aléatoires comporte trois ingrédients principaux : 
+\begin{enumerate}
+	\item L'espace d'états, ou univers, noté traditionnellement $\Omega$ ; c'est l'ensemble de toutes les issues possibles de notre expérience aléatoire. Prenons quelques exemples : 
+	\begin{itemize}
+		\item Un jeu de pile ou face aura pour univers l'ensemble $\Omega = \{P,F\}$, ou $\Omega = \{0,1\}$. L'expérience aléatoire qui consiste à jeter $n$ fois une 
+		pièce, et à collecter les résultats des $n$ lancers se modélise en prenant pour univers $\Omega = \{P,F\}^n$. Un résultat est une suite $\omega = (\omega_1,\cdots,\omega_n)$ d'éléments de $\{P,F\}$.
+		\item On modélise l'expérience aléatoire qui consiste à lancer deux dés en prenant pour univers l'ensemble $\Omega = \{1,2,3,4,5,6\}^2$.
+		\item L'expérience aléatoire qui consiste à tirer avec remise $n$ boules d'une urne qui contient $N$ boules distinctes (numérotées de $1$ à $N$) aura pour 
+		univers $\Omega = \{1,\cdots,N\}$
+		\item L'expérience aléatoire qui consiste à tirer en succession et sans remise $n$ boules d'une urne qui contient $N$ boules distinctes (numérotées de $1$ à 
+		$N$) aura pour univers l'ensemble des $n$-arrangements d'éléments de $\{1,\cdots,N\}$
+		\item L'expérience aléatoire qui consiste à tirer une poignée de $n$ boules dans une urne qui en contient $N$ numérotées de $1$ à $N$ aura pour univers 
+		naturel l'ensemble des parties à $n$ éléments de l'ensemble $\{1,\cdots,N\}$ 
+		\item L'expérience aléatoire consistant à mesurer la durée de vie d'une ampoule électrique a pour univers $\Omega = \R_+$
+	\end{itemize}
+	
+	Cette année, on s'occupera uniquement du cas où l'ensemble $\Omega$ est fini (cela simplifie beaucoup la théorie mais permet quand même d'en introduire tout le vocabulaire et pas mal d'aspects).
+	
+	\item Les événements. Un événement est une propriété, vérifiée ou non une fois l'expérience aléatoire réalisée. Par exemple, si on jette deux dés, on peut 
+	s'intéresser à l'événement : "la somme des résultats obtenus est un nombre inférieur ou égal à 4". Mathématiquement, un événement sera modélisé par l'ensemble des 
+	issues qui le réalisent, c'est donc une partie de l'univers $\Omega$. L'événement de notre exemple est ainsi modélisé par l'ensemble 
+	\begin{center}
+	$\{(1,1),(1,2),(2,1),(1,3),(3,1),(2,2)\}$
+	\end{center}
+	Lorsque $\Omega$ est fini, l'ensemble des événements est l'ensemble $P(\Omega)$ des parties de $\Omega$. Il y a un langage propre à la théorie :
+	\begin{itemize}
+		\item Les événements $\{\omega\}$ (singletons) s'appellent les événements élémentaires.
+		\item Si $A$ est un événement, et si l'expérience aléatoire a donné l'issue $\omega$, la traduction de "l'événement $A$ est réalisé" est : $\omega \in A$. 
+		\item L'univers $\Omega$ s'appellent l'événement certain, $\varnothing$ est l'événement impossible.
+		\item Si $A$ et $B$ sont deux événements, $A \cup B$ est l'événement "$A$ ou $B$", $A \cap B$ est l'événement "$A$ et $B$", et le complémentaire de $A$, noté $\overline{A}$ ou $A^c$ s'appelle l'événement contraire de $A$. Les événements $A$ et $B$ sont incompatibles lorsque $A \cap B = \varnothing$. On dit que $A$ implique $B$ lorsque $A \subset B$.
+	\end{itemize}
+	
+	\item La probabilité $\p$ : à chaque événement $A$ est attaché un nombre $\p(A)$, élément de $[0,1]$, qui mesure le degré de vraisemblance de $A$ (ce nombre est 
+	d'autant plus proche de $1$ que les chances que $A$ se produise sont élevées). \\
+	
+	Reprenons notre approche fréquentielle : répétons l'expérience aléatoire $n$ fois, on note $f_n(A)$ la fréquence de réalisation de l'événement $A$ (c'est le 
+	quotient du nombre de fois où $A$ s'est produit par $n$, nombre total de réalisations de l'expérience). On prend alors :
+	\begin{center}
+	$\p(A) = \underset{n \to +\infty}{\lim} f_n(A)$
+	\end{center}
+	en postulant l'existence de cette limite. D'après les propriétés des fréquences, on aura alors $\p(\Omega) = 1$ et $\p(A \cup B) = \p(A)+\p(B)$ lorsque $A$ et $B$ 
+	sont disjoints. C'est ce qui va nous conduire à la définition rigoureuse d'une probabilité. Le postulat de régularité statistique ne sert qu'à justifier les 
+	définitions mathématiques qui vont suivre. Un des aspects très satisfaisant de la théorie est qu'en retour on peut démontrer cette régularité statistique (ce sont 
+	les résultats connus sous le nom de loi des grands nombres).
+\end{enumerate}
+
+Il y a aussi un quatrième ingrédient, dont nous reparlerons plus tard : les variables aléatoires.
+
+\newpage
+
+\section{Probabilités sur un univers fini}
+
+\subsection{Espaces probabilisés}
+
+\begin{definition}{Probabilité}{}
+Soit $\Omega$ un ensemble (univers) fini. On appelle \Strong{probabilité} sur $\Omega$ toute application $\p$ de $P(\Omega)$ dans $[0,1]$ telle que :
+\begin{enumerate}
+\item $\p(\Omega) = 1$
+\item Si $A$ et $B$ sont deux événements incompatibles, $\p(A \cup B) = \p(A) + p(B)$ (additivité)
+\end{enumerate}
+\end{definition}
+
+\begin{definition}{Espace probabilisé}{}
+On appelle \Strong{espace probabilisé fini} tout couple $(\Omega,\p)$ où $\Omega$ est un univers fini et $\p$ une probabilité sur $\Omega$.
+\end{definition}
+
+\begin{remarque}{}
+Il y a un vocabulaire attaché à la probabilité, un peu artificiel quand on a affaire à des ensembles finis, mais qu'on donne quand même. \\
+Soit $(\Omega,\p)$ un espace probabilisé fini. \\
+On dit qu'un événement $A$ est \Strong{négligeable} lorsque $\p(A) = 0$ et \Strong{quasi certain} si $\p(A) = 1$. \\
+Une propriété sur $\Omega$ est vraie \Strong{presque sûrement} si l'ensemble des points $\omega$ où la propriété est fausse est négligeable. \\
+
+On peut se poser la question de l'existence dans le cas fini d'événements négligeables autres que l'événement impossible. En effet, la modélisation conduit en général
+à attribuer à chaque événement élémentaire une probabilité strictement positive, mais rien n'empêche d'ajouter artificiellement des issues de probabilité nulle. Dans 
+le cas d'ensembles infinis (non dénombrables), la situation est bien différente. Par exemple, si on modélise un jeu de pile ou face infini (c'est un idéal 
+mathématique, évidemment), on est amené à considérer l'ensemble non dénombrable $\Omega = \{0,1\}^\N$ (ensemble des suites infinies d'éléments de $\{0,1\}$). On 
+démontre qu'on peut munir $\Omega$ d'une probabilité $\p$ conforme à notre intuition (par exemple, la probabilité d'obtenir "pile" à un lancer donné est de $\dfrac{1}{2}$, 
+la probabilité que les $n$ premiers lancers aient des valeurs données est $\dfrac{1}{2^n}$). Alors on montre facilement que la probabilité de chaque événement 
+élémentaire est nulle, de même que celle d'obtenir "pile" tous les trois lancers. Il y a bien dans ce cas des événements négligeables qui ne sont pas l'événement 
+impossible.
+
+\end{remarque}
+
+\pagebreak
+
+Donnons tout de suite les principales propriétés des probabilités :
+
+\begin{proposition}{Propriétés principales des probabilités}{}
+
+Soit $(\Omega,\p)$ un espace probabilisé fini, $A$ et $B$ deux événements.
+\begin{enumerate}
+	\item $\p(\varnothing) = 0$
+	\item $\p(\overline{A}) = 1- \p(A)$.
+	\item Si $A \subset B$, alors $\p(A) \le \p(B)$ (on dit que $\p$ est \strong{croissante}). \\
+	Plus précisément, on a $\p(B \setminus A) = \p(B) - \p(A)$ lorsque $A \subset B$.
+	\item $\p(A \cup B) = \p(A) + \p(B) - \p(A \cap B)$
+	\item Si $A_1,\cdots,A_n$ sont des événements deux à deux incompatibles, alors (additivité finie) :
+\end{enumerate}
+
+\end{proposition}
+
+\end{document}
