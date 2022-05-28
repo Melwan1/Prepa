@@ -323,4 +323,69 @@ Notons que les fameuses urnes peuvent aussi servir à modéliser des situations 
 des boules est divisé en une ou plusieurs sous-populations (caractérisées, en général, par la couleur). Si on vous dit par exemple qu'une urne contient 7 boules, dont 
 4 vertes et 3 rouges, et que l'expérience aléatoire consiste à tirer une boule, et à noter sa couleur, on peut prendre comme univers $\Omega = \{V,R\}$ avec $\p(V) = \dfrac{4}{7}$ et $\p(R) = \dfrac{3}{7}$, on a ainsi modélisé un jeu de pile ou face non équitable.
 \end{remarque}
+
+\begin{exemple}[Exercice 6]{}
+Une urne contient 6 boules rouges, 5 boules vertes et 3 boules bleues.
+\begin{enumerate}
+	\item On tire simultanément trois boules de l'urne. Quelle est la probabilité d'avoir un tirage unicolore ? Quelle est la probabilité d'avoir un tirage 
+	tricolore ? Quelle est la probabilité d'avoir un tirage bicolore ?
+	
+	$\rightarrow$ Pour avoir un tirage unicolore, il faut soit tirer trois rouges, soit trois bleues, soit trois vertes. La probabilité de tirer trois rouges vaut $\dfrac{6}{14}\dfrac{5}{13}\dfrac{4}{12} = \dfrac{5}{91}$, la probabilité de tirer trois bleues est $\dfrac{3}{14} \dfrac{2}{13} \dfrac{1}{12} = \dfrac{1}{364}$ et celle de tirer trois vertes vaut $\dfrac{5}{14}\dfrac{4}{13}\dfrac{3}{12} = \dfrac{5}{182}$. Donc la probabilité d'obtenir un tirage unicolore vaut $\dfrac{5}{91} + \dfrac{5}{182} + \dfrac{1}{364} = \dfrac{31}{364}$. \\
+	
+	Tirage tricolore : la première boule n'importe pas, elle est de la couleur qu'on veut.
+	Si elle est rouge, alors il faut tirer une verte et une bleue. Si la deuxième est bleue, la troisième doit être verte. probabilité de tout ceci : $\dfrac{6}
+{14}\dfrac{3}{13}\dfrac{5}{12} = \dfrac{5}{364}$. \\
+	Si la deuxième est verte, la troisième est bleue. Probabilité : $\dfrac{5}{364}$ \\
+	Probabilité avec la première rouge : $\dfrac{5}{182}$. \\
+	De même, la probabilité d'obtenir un tirage tricolore avec la première boule bleue vaut $\dfrac{5}{182}$, et $\dfrac{5}{182}$ avec la première boule verte. \\
+	Donc la probabilité d'obtenir un tirage tricolore est (événements incompatibles) : $\dfrac{15}{182}$.
+	
+	Les événements "obtenir un tirage tricolore ou unicolore" et "obtenir un tirage bicolore" sont un système complet d'événements, donc la probabilité d'obtenir un 
+	tirage bicolore vaut $1-\dfrac{31}{364}-{15}{182} = \dfrac{303}{364}$
+	
+	\item On effectue maintenant trois tirages successifs avec remise. Répondre aux mêmes questions que dans le premier cas.
+	
+	\item On effectue trois tirages successifs sans remise. Répondre aux mêmes questions que dans le premier cas. \\
+	Quelle est la probabilité que la première boule bleue tirée le soit au troisième tirage ? 
+	
+\end{enumerate}
+
+\end{exemple}
+
+\subsection{Conditionnement et indépendance}
+
+Il s'agit là d'une notion centrale en probabilités. Essayons de justifier de façon intuitive les définitions qui vont suivre. Considérons une expérience aléatoire, et 
+un événement $A$ liée à cette expérience aléatoire. Supposons qu'on sache qu'un certain événement $B$ est réalisé. On a une information supplémentaire, qui va a 
+priori modifier les chances de réalisation de $A$, puisqu'elle modifie l'univers qu'on considère. Si on considère encore une fois l'approche par les fréquences, on 
+imagine qu'on répète l'expérience aléatoire $n$ fois. On va cette fois compter combien de fois $A$ s'est réalisé lorsque $B$ s'est réalisé. Sur les $n$ répétitions, 
+$B$ s'est réalisé $nf_n(B)$ fois, et lorsque $B$ a eu lieu, $A$ s'est aussi réalisé autant de fois que $A \cap B$, c'est-à-dire $nf_n(A \cap B)$ fois. La fréquence de 
+réalisation de $A$ parmi les fois où $B$ s'est réalisé est donc :
+\begin{center}
+$\dfrac{nf_n(A \cap B)}{nf_n(B)} = \dfrac{f_n(A\cap B)}{f_n(B)}$
+\end{center}
+quantité qui devrait tendre vers $\dfrac{\p(A \cap B)}{\p(B)}$, c'est ce qu'on va appeler la \Strong{probabilité conditionnelle de $A$ sachant $B$}. On dira que $A$ 
+est \Strong{indépendant} de $B$ si la réalisation de $B$ n'influe pas sur les chances de réalisation de $A$, c'est-à-dire si la probabilité conditionnelle de $A$ 
+sachant $B$ est égale à la probabilité de $A$, ce qui donne $\p(A) = \dfrac{\p(A \cap B)}{\p(B)}$, ou encore (c'est une condition symétrique en $A$ et $B$) si :
+\begin{center}
+$\p(A \cap B) = \p(A) \p(B)$
+\end{center}
+
+\subsubsection{Indépendance}
+
+\begin{definition}{Indépendance}{}
+Soit $(\Omega,\p)$ un espace probabilisé fini.
+\begin{enumerate}
+	\item Soient $A$ et $B$ deux événements. On dit que $A$ et $B$ sont \Strong{indépendants} lorsque 
+	\begin{center}
+	$\p(A \cap B) = \p(A) \p(B)$
+	\end{center}
+	\item (Généralisation) Soient $A_1,\cdots,A_n$ des événements. On dit que $A_1,\cdots,A_n$ sont \Strong{indépendants} (on dit aussi \strong{mutuellement 
+	indépendants}) lorsque : \\
+	pour toute partie non vide $I$ de $\{1,\cdots,n\}$, on a :
+	\begin{center}
+	$\displaystyle \p\left(\bigcap_{\ell \in I} A_\ell\right) = \prod_{\ell \in I} \p(A_\ell)$
+	\end{center}
+\end{enumerate}
+\end{definition}
+	
 \end{document}
