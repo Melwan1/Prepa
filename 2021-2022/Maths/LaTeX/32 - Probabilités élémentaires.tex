@@ -435,6 +435,64 @@ Soit $\Omega = \{1,\cdots,8\}$, muni de la probabilité uniforme. On prend $A = 
 
 \begin{exemple}[Exercice 7]{}
 Soit $n$ un entier, $n \ge 2$. On modélise un jeu de pile ou face équitable avec $n$ lancers par l'univers $\{0,1\}^n$, muni de la probabilité uniforme. Pour tout entier $i$ compris entre $1$ et $n$, on note $A_i$ l'événement "le $i$-ème lancer à donné pile" (dans notre modèle, $A_i$ est l'ensemble des $\omega = (\omega_1,\cdots,\omega_n)$ tels que $\omega_i = 1$).
+\begin{enumerate}
+	\item Pour $1 \le i < j \le n$, prouver que $A_i$ et $A_j$ sont indépendants.
+	\item Prouver que les événements $(A_1,\cdots,A_n)$ sont indépendants.
+	\item Pour $1 \le k \le n$, soit $B_k$ l'événement "on a obtenu $k$ piles exactement parmi les $n$ lancers". Quelle est la probabilité de $B_k$ ?
+\end{enumerate}
 \end{exemple}
+
+\begin{remarque}{}
+L'indépendance d'événements $A_1,\cdots,A_n$ ne dépend évidemment pas de leur ordre d'énumération. \\
+Par ailleurs, si $A_1,\cdots,A_n$ sont indépendants, il est tout aussi clair que $A_1,\cdots,A_k$ le sont aussi, pour tout entier $k$ compris entre $1$ et $n$.
+\end{remarque}
+
+\begin{proposition}{}{}
+Soient $A$ et $B$ deux événements indépendance de l'espace probabilisé $(\Omega, \p)$. \\
+Alors les événements $\overline{A}$ et $B$ sont aussi indépendants, de même que $A$ et $\overline{B}$ et $\overline{A}$ et $\overline{B}$.
+\end{proposition}
+
+\begin{demo}{}
+Il suffit évidemment de montrer que $\overline{A}$ et $B$ sont indépendants. On remarque que
+\begin{center}
+$B = B \cap \Omega = B \cap (A \cup \overline{A}) = (B \cap A) \cup (B \cap \overline{A})$,
+\end{center}
+et les événements $B \cap A$ et $B \cap \overline{A}$ sont incompatibles. On a donc 
+\begin{center}
+$\p(B \cap \overline{A} = \p(B) - \p(B \cap A) = \p(B)-\p(B)\p(A) = \p(B)(1-\p(A)) = \p(B)\p(\overline{A})$. 
+\end{center}
+\end{demo}
+
+La proposition précédente se généralise ainsi : 
+\begin{proposition}{}{}
+Soient $A_1,\cdots,A_n$ des événements indépendants de l'espace probabilisé $(\Omega,\p)$. Alors il en est de même des événements $B_1,\cdots,B_n$ où $B_i$ est $A_i$ ou $\overline{A_i}$ pour tout entier $i$ compris entre $1$ et $n$.
+\end{proposition}
+
+\begin{demo}{}
+Il suffit en fait de voir que les événements $\overline{A_1},A_2,\cdots,A_n$ sont indépendants (voyez-vous pourquoi ?), et pour ceci, il suffit de prouver que si $k$ est un entier compris entre $2$ et $n$, alors
+\begin{center}
+$\p(\overline{A_1} \cap A_2 \cap \cdots \cap A_k) = \p(\overline{A_1}) \p(A_2) \cdots \p(A_k)$.
+\end{center}
+
+Or c'est facile : soit $k$ un entier compris entre $2$ et $n$. On remarque que $A_1$ et $C = A_2 \cap \cdots \cap A_k$ sont indépendants car 
+\begin{center}
+$\p(A_1 \cap C) = \displaystyle \p\left(\bigcap_{i=1}^k A_i\right) = \prod_{i=1}^k \p(A_i) = \p(A_1)\p(C)$.
+\end{center}
+par indépendance de $A_1,\cdots,A_n$.
+
+D'après la proposition précédente, $\overline{A}$ et $C$ sont indépendants, ce qui entraîne le résultat.
+\end{demo}
+
+\begin{proposition}{}{}
+Soient $A_1,\cdots,A_n$ des événements indépendants de l'espace probabilisé $(\Omega,\p)$, et $p$ un entier compris entre $1$ et $n-1$. Alors 
+\begin{enumerate}
+	\item Les événements $A_1 \cap \cdots \cap A_p$ et $A_{p+1}\cap \cdots A_n$ sont indépendants.
+	\item Les événements $A_1 \cup \cdots \cup A_p$ et $A_{p+1}\cup \cdots A_n$ sont indépendants.
+	\item Les événements $A_1 \cap \cdots \cap A_p$ et $A_{p+1}\cup \cdots A_n$ sont indépendants.
+\end{enumerate}
+\end{proposition}
+
+
+
 	
 \end{document}
