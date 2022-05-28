@@ -262,10 +262,65 @@ Plus précisément, si on dispose d'une telle famille, il y a une et une seule p
 Examinons à présent une situation courante, celle où toutes les issues possibles ont même probabilité : 
 
 \begin{theoreme}{Probabilité uniforme}{}
-Soit $\Omega$ un ensemble fini. Il existe une et une seule probabilité $\p$ sur $\Omega$, appelée \Strong{probabilité uniforme}, qui a la même valeur sur tous les singletons. \\
+Soit $\Omega$ un ensemble fini. Il existe une et une seule probabilité $\p$ sur $\Omega$, appelée \Strong{probabilité uniforme}, qui a la même valeur sur tous les 
+singletons. \\
 On a, pour tout élément $\omega$ de $\Omega$, et pour tout événement $A$ :
 \begin{center}
 $\p(\{\omega\}) = \dfrac{1}{\text{Card } \Omega}$ et $\p(A) = \dfrac{\text{Card } A}{\text{Card } \Omega}$
 \end{center}
 \end{theoreme}
+
+\begin{demo}{}
+Si $\p$ existe, on doit avoir, en notant $p$ la valeur commune de $\p$ sur les singletons,
+\begin{center}
+$1 = \p(\Omega) = \displaystyle \sum_{\omega \in \Omega} \p(\{\omega\}) = \sum_{\omega \in \Omega} p = p \text{Card } \Omega$
+\end{center}
+Donc $p = \dfrac{1}{\text{Card } \Omega}$. \\
+
+Si maintenant on pose, pour $\omega \in \Omega$, $p_\omega = \dfrac{1}{\text{Card } \Omega}$, on a là une famille de réels positifs de somme 1, il existe donc une 
+unique probabilité $\p$ sur $\Omega$ telle que
+\begin{center}
+$\forall \omega \in \Omega, \p(\{\omega\}) = \dfrac{1}{\text{Card} \Omega}$
+\end{center}
+et on a bien, pour tout événement $A$,
+\begin{center}
+$\p(A) = \displaystyle \sum_{\omega \in A} \p(\{\omega\}) = \sum_{\omega \in A} \dfrac{1}{\text{Card } \Omega} = \dfrac{\text{Card } A}{\text{Card } \Omega}$
+\end{center}
+\end{demo}
+
+\begin{remarque}{}
+Chaque fois qu'un énoncé fait référence à des tirages ou des choix "au hasard", à des dés "équitables, ou équilibrés, ou non truqués", à des pièces "équilibrées, ou 
+non truquées" (pour les jeux de pile ou face), à des boules ou des jetons "indiscernables" (pour des énoncés à bases de tirages dans des urnes), c'est qu'on a affaire 
+à une situation d'équiprobabilité, et on munira donc l'univers correspondant de la probabilité uniforme. \\
+
+Le terme "tirage au hasard" n'est pas très bien choisi, le hasard n'est pas toujours synonyme d'équiprobabilité. Par exemple, si l'expérience aléatoire consiste à 
+jeter deux dés et à noter la somme des deux résultats obtenus (l'univers est donc l'ensemble des entiers compris entre 2 et 12), il est clair que qu'on a pas affaire 
+à une situation d'équiprobabilité, bien que le "hasard" soit toujours à l'œuvre.
+\end{remarque}
+
+\begin{remarque}{}
+Dans le cas de la probabilité uniforme, la formule $\p(A) = \dfrac{\text{Card } A}{\text{Card } \Omega}$ se lit quelquefois "nombre de cas favorables sur nombre de 
+cas possibles" (un cas favorable est une issue qui réalise l'événement $A$). Dans cette situation (très souvent rencontrée), calculer une probabilité, c'est faire du 
+dénombrement.
+\end{remarque}
+
+\begin{remarque}{}
+Un grand nombre d'énoncés aiment à contextualiser la situation : on parle de lancer de dés, de jets de pièces, de tirages dans des urnes. M. Sellès est enclin à 
+éviter ce genre d'énoncé, et rester dans le domaine mathématique pur et dur, mais il faut quand même vous préparer à les affronter. Dans ce cas là, c'est à vous de 
+préciser quel univers vous adoptez pour modéliser la situation, et aussi quelle probabilité vous considérez sur cet univers. Revenons sur les modèles à base de 
+tirages dans des urnes, pour les trois cas les plus simples :
+\begin{enumerate}
+	\item Si on effectue $n$ tirages avec remise (chaque tirage a lieu en succession, et on remet la boule tirée dans l'urne après chaque tirage) dans une urne qui 
+	contient $N$ boules, on prend en général comme univers $\Omega = \{1,\cdots,N\}^n$ et on considère que chaque tirage est équiprobable. Dans ce cas, 
+	$\text{Card } \Omega = N^n$. On peut très bien simuler ainsi un jeu de pile ou face (considérer une urne qui contient deux boules).
+	\item Si on effectue $n$ tirages successifs sans remise (chaque tirage a lieu en succession, et on garde la boule tirée dans l'urne après chaque tirage) dans une 
+	urne qui contient $N$ boules, on prend comme univers $\Omega$ l'ensemble des $n$-uplets d'entiers distincts de $\{1,\cdots,N\}$ (on imagine qu'on a numéroté les 
+	$N$ boules), c'est-à-dire les $n$-arrangements de l'ensemble $\{1,\cdots,N\}$, et dans ce cas, $\text{Card}  \Omega = N(N-1) \cdots (N-n+1)$
+	\item Si on effectue des tirages simultanés de $n$ boules (on tire des poignées de $n$ boules) dans une urne qui en contient $N$, l'univers $\Omega$ adéquat est 
+	en général l'ensemble des parties à $n$ éléments de l'ensemble des $N$ boules, et on a dans ce cas $\text{Card } \Omega = \begin{pmatrix} N \\ n \end{pmatrix}$.
+\end{enumerate}
+Notons que les fameuses urnes peuvent aussi servir à modéliser des situations non équiprobables (même si les tirages le sont). C'est souvent le cas lorsque l'ensemble 
+des boules est divisé en une ou plusieurs sous-populations (caractérisées, en général, par la couleur). Si on vous dit par exemple qu'une urne contient 7 boules, dont 
+4 vertes et 3 rouges, et que l'expérience aléatoire consiste à tirer une boule, et à noter sa couleur, on peut prendre comme univers $\Omega = \{V,R\}$ avec $\p(V) = \dfrac{4}{7}$ et $\p(R) = \dfrac{3}{7}$, on a ainsi modélisé un jeu de pile ou face non équitable.
+\end{remarque}
 \end{document}
