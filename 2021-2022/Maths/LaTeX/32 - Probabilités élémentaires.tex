@@ -144,4 +144,77 @@ Les deux dernières assertions se prouvent facilement par récurrence.
 \end{demo}
 
 \footnotetext{Faire un dessin pour le voir.}
+
+\begin{definition}{Système complet d'événements}{}
+Soit $(\Omega,\p)$ un espace probabilisé fini, $A_1,\cdots,A_n$ des événements. \\
+On dit que $(A_1,\cdots,A_n)$ est un \Strong{système complet d'événements} si les $A_i$ sont deux à deux incompatibles et si la réunion des $A_i$ est $\Omega$.
+\end{definition}
+
+\begin{remarque}{}
+Si $(A_1,\cdots,A_n)$ est un système complet d'événements, on a par additivité finie :
+\begin{center}
+$1 = \p(\Omega) = \displaystyle \sum_{k=1}^n \p(A_k)$
+\end{center}
+\end{remarque}
+
+\begin{exemple}{}
+Pour tout événement $A$ d'un espace probabilisé fini $(\Omega,\p)$, $(A, \overline{A})$ est un système complet d'événements.\\ 
+De même, $({\omega})_{\omega \in \Omega}$ est aussi un système complet d'événements.
+\end{exemple}
+
+\begin{proposition}{}{}
+Soit $(\Omega,\p)$ un espace probabilisé fini, $(A_1,\cdots,A_n)$ un système complet d'événements. Alors, pour tout événement $B$, on a :
+\begin{center}
+$\p(B) = \displaystyle \sum_{k=1}^n \p(B \cap A_k)$
+\end{center}
+\end{proposition}
+
+\begin{demo}{}
+Soit $B$ un événement. On a :
+\begin{center}
+$B = B \cap \Omega = B \cap \displaystyle \bigcup_{k=1}^n A_k = \bigcup_{k=1}^n (B \cap A_k)$
+\end{center}
+
+et les divers ensembles $B \cap A_1,\cdots,B\cap A_n$ sont deux à deux disjoints, d'où le résultat par additivité finie.
+\end{demo}
+
+\begin{exemple}[Exercice 1]{}
+La proposition précédente reste vraie si on suppose seulement que les $A_i$ sont deux à deux incompatibles et que leur réunion est un événement quasi-certain.
+\end{exemple}
+
+\begin{exemple}[Exercice 2]{}
+Soit $(\Omega,\p)$ un espace probabilisé fini, $A$ et $B$ deux événements tels que $\p(A) = \dfrac{3}{4}$ et $\p(B) = \dfrac{1}{3}$. \\
+Prouver que $\dfrac{1}{12} \le \p(A \cap B) \le \dfrac{1}{3}$. \\
+
+Preuve : on a déjà $\p(A \cap B) = \p(A) + \p(B) - \underbrace{\p(A \cup B)}_{\text{positif et inférieur ou égal à 1}} \ge \dfrac{3}{4}+\dfrac{1}{3}-1 = \dfrac{1}{12}$. \\
+
+De plus, l'événement $A \cap B$ implique l'événement $B$, donc $\p(A \cap B) \le \p(B) = \dfrac{1}{3}$.
+
+\end{exemple}
+
+\begin{exemple}[Exercice 3]{}
+Soit $\Omega,\p)$ un espace probabilisé fini, $A_1,\cdots,A_n$ des événements (avec $n \ge 2$). \\
+Prouver que
+\begin{center}
+$\displaystyle \p\left(\bigcup_{k=1}^n A_k\right) \ge \sum_{k=1}^n \p(A_k) - \sum_{1 \le k < \ell \le n} \p(A_k \cap A_\ell)$
+\end{center}
+\end{exemple}
+
+\begin{exemple}[Exercice 4]{}
+Soit $(\Omega,\p)$ un espace probabilisé fini, $A,B,C$ des événements. Prouver que
+\begin{center}
+$\p(A \cup B \cup C) = \p(A) + \p(B) + \p(C) - \p(A \cap B) - \p(B \cap C) - \p(A \cap C) + \p(A \cap B \cap C)$
+\end{center}
+\end{exemple}
+
+Le résultat de l'exercice suivant n'est pas officiellement au programme, mais il est utile, c'est conseillé de le retenir : 
+
+\begin{exemple}[Exercice 5]{Formule de Poincaré}{}
+Soit $(\Omega,\p)$ un espace probabilisé fini, $A_1,\cdots,A_n$ des événements (avec $n \ge 2$). \\
+Prouver que :
+\begin{center}
+$\displaystyle \p\left(\bigcup_{k=1}^n A_k\right) = \sum_{k=1}^n (-1)^{k-1} \left(\sum_{1 \le i_1 < \cdots < i_k \le n} \p(A_{i_1} \cap \cdots A_{i_n})\right)$
+\end{center}
+\end{exemple}
+
 \end{document}
