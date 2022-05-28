@@ -492,7 +492,58 @@ Soient $A_1,\cdots,A_n$ des événements indépendants de l'espace probabilisé 
 \end{enumerate}
 \end{proposition}
 
+\begin{demo}{}
+Montrons la première assertion. \\
+Soit $A = A_1 \cap \cdots \cap A_p$ et $B = A_{p+1} \cap \cdots \cap A_n$. \\
 
+Alors $A \cap B = A_1 \cap \cdots \cap A_n$ et par indépendance de $A_1,\cdots,A_n$, on a 
+\begin{center}
+$\p(A \cap B) = \p(A_1 \cap \cdots \cap A_n) = \displaystyle \prod_{k=1}^n \p(A_k)$
+\end{center}
 
+Or, toujours par indépendance de $A_1,\cdots,A_n$, on a 
+\begin{center}
+$\p(A) = \displaystyle \prod_{k=1}^p \p(A_k)$ et $\p(B) = \displaystyle \prod_{k=p+1}^n \p(A_k)$,
+\end{center}
+on en déduit bien que
+\begin{center}
+$\p(A \cap B) = \p(A) \p(B)$.
+\end{center}
+
+Pour la deuxième assertion, remarquons que les événements $\overline{A_1}, \cdots, \overline{A_n}$ sont indépendants d'après la proposition précédente. D'après le premier cas, les événements $A = \displaystyle \bigcap_{k=1}^p \overline{A_k}$ et $B = \displaystyle \bigcap_{k=p+1}^n \overline{A_k}$ sont indépendants. Or on a 
+\begin{center}
+$A =\displaystyle \overline{\bigcup_{k=1}^p A_k}$ et $B = \displaystyle \overline{\bigcup_{k=p+1}^n A_k}$.
+\end{center}
+
+Comme $\overline{A}$ et $\overline{B}$ sont indépendants, on a le résultat. \\
+
+Pour la troisième assertion, remarquons que les événements $A_1,\cdots,A_p, \overline{A_{p+1}}, \cdots, \overline{A_n}$ sont indépendants. On en déduit que $A = \bigcap_{k=1}^p A_k$ et $B = \bigcap_{k=1}^p \overline{A_k} = \overline{\bigcup_{k=1}^p A_k}$ sont indépendants d'après le premier cas. On sait alors que $A$ et $\overline{B}$ sont aussi indépendants. 
+
+\end{demo}
+
+\paragraph{Modélisation d'une succession d'épreuves indépendantes}
+
+Imaginons pour commencer qu'on ait modélisé deux expériences aléatoires $\mathcal{E}_1$ et $\mathcal{E}_2$ avec les espaces probabilisés finis $(\Omega_1,\p_1)$ et $(\Omega_2,\p_2)$. On aimerait modéliser la succession des deux expériences, de façon indépendante. Un résultat lié à cette succession est un couple $(\omega_1,\omega_2)$ avec $\omega_1 \in \Omega_1$ et $\omega_2 \in \Omega_2$. \\
+On va donc prendre pour univers l'ensemble $\Omega = \Omega_1 \times \Omega_2$. \\
+Reste à définir une probabilité $\p$ sur $\Omega$ qui traduise l'indépendance. \\
+
+Ce qu'on veut, c'est que si $A_1$ est un événement lié à l'expérience $\mathcal{E}_1$, $A_2$ un événement lié à $\mathcal{E}_2$, alors $A_1$ et $A_2$ sont indépendants dans la succession de $\mathcal{E}_1$ et $\mathcal{E}_2$. Une petite difficulté se présente ici, puisque si $A_1$ est une partie de $\Omega_1$, ce n'est pas une partie de $\Omega$, on va la remplacer par $A_1 \times \Omega_2$ (il semble logique de considérer que $A_1$ et $A_1 \times \Omega_2$ représentent le même événement). Dans cette optique, on va imposer que $\p(A_1 \times \Omega_2) = \p_1(A_1)$. On imposera de même $\p(\Omega_1 \times A_2) = \p_2(A_2)$ pour toute partie $A_2$ de $\Omega_2$. \\
+
+On veut donc définir une probabilité $\p$ sur $\Omega$ de telle sorte que pour toutes parties $A_1$ et $A_2$ de $\Omega_1$ et $\Omega_2$, on ait d'une part
+\begin{center}
+$\p(A_1 \times \Omega_2) = \p_1(A_1), \p(\Omega_1 \times A_2) = \p_2(A_2)$,
+\end{center}
+et d'autre part (puisqu'on veut l'indépendance de $A_1 \times \Omega_2$ et $\Omega_1 \times A_2$), 
+\begin{center}
+$\p((A_1 \times \Omega_2) \cap (\Omega_1 \times A_2)) = \p(A_1 \times \Omega_2) \p(\Omega_1 \times A_2)$.
+\end{center}
+or, il est clair que $(A_1 \times \Omega_2) \cap (\Omega_1 \times A_2) = A_1 \times A_2$, on est ainsi conduit à poser, pour $A_1$ partie de $\Omega_1$ et $A_2$ partie de $\Omega_2$, 
+\begin{center}
+$\p(A_1 \times A_2) = \p_1(A_1) \p_2(A_2)$,
+\end{center}
+et, en particulier, pour tout $\omega = (\omega_1,\omega_2)\in \Omega$,
+\begin{center}
+$\p(\{\omega\}) = \p_1(\{\omega_1\}) \p_2(\{\omega_2\}) \underset{\text{def}}{=} p_\omega$
+\end{center}
 	
 \end{document}
