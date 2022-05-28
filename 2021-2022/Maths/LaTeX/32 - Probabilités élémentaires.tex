@@ -592,5 +592,59 @@ On a donc
 \begin{center}
 $\p(A \cap B) = \p(B) \p_B(A)$.
 \end{center}
+
+Voici un exemple d'utilisation. 
+
+\begin{exemple}{}
+On considère des familles de deux enfants (on supposera que chaque enfant a une chance sur deux d'être une fille). \\
+Quelle est la probabilité de les deux enfants soient des filles sachant que l'aîné est une fille ? \\
+Quelle est la probabilité que les deux enfants soient des filles sachant qu'un des deux est une fille ? \\
+
+On adopte la modélisation suivante, suggérée par l'énoncé : $\Omega = \{ff,fg,gf,gg\}$, muni de la probabilité uniforme (le sexe de l'aîné est codé par la première lettre). \\
+L'événement "les deux enfants sont des filles" est $A = \{ff\}$. L'événement "l'aîné est une fille" est $B = \{fg,ff\}$. L'événement "un des deux enfants est une fille" est $C = \{ff,fg,gf\}$. La première question est de trouver $\p_B(A)$, et la réponse est $1/2$. LA deuxième question demande $\p_C(A)$,et la réponse est $1/3$.
+\end{exemple}
+
+\begin{remarque}[Avertissement]{}
+Dans bien des énoncés, ce sont des probabilités conditionnelles qui sont données, et c'est à vous d'interpréter correctement l'énoncé pour les donner (on revient donc à une définition plus ou moins floue de cette quantité). Prenons un exemple : \\
+
+Céline et Olivier jouent aux fléchettes. Céline a trois chances sur dix de toucher la cible, Olivier a sept chances sur dix de toucher la cible. Céline tire deux fois plus qu'Olivier (pour compenser son manque d'adresse). Quelle est la probabilité que la cible soit touchée lors d'un tir ? \\
+
+Comment modéliser cette expérience aléatoire ? Une issue est un couple (tireur,résultat). On prend pour $\Omega$ l'ensemble $\{(C,T),(C,R),(O,T),(O,R)\}$ ($C$ code Céline, $O$ Olivier, $T$ touché et $R$ raté). \\
+L'événement "Céline tire" est $A = \{(C,T),(C,R)\}$. L'événement "Olivier tire" est précisément $\overline{A}$. \\
+Il reste à trouver une probabilité $\p$ sur $\Omega$ compatible avec l'énoncé. \\
+
+L'énoncé nous dit que $\p(A) = 2\p(\overline{A})$, et comme $\p(A) + \p(\overline{A}) = 1$, on a $\p(A) = \dfrac{2}{3}$ et $\p(\overline{A}) = \dfrac{1}{3}$. \\
+
+Notons $B$ l'événement "la cible est touchée", on a $B = \{(C,T),(O,T)\}$. L'énoncé nous dit (c'est là qu'on interprète les probabilités conditionnelles) que la probabilité que la cible soit touchée sachant que Céline tire est $0.3$ c'est à dire que $\p_A(B) = 0.3$. On en déduit
+\begin{center}
+$\p(\{(C,T)\}) = \p(A \cap B) = \p(A) \p_A(B) = \dfrac{2}{3} \dfrac{3}{10}$.
+\end{center}
+
+Vous remarquerez qu'on a utilisé la définition de la probabilité conditionnelle pour calculer la probabilité de l'intersection. On aura de même $\p_{\overline{A}}(B) = 0.7$, et 
+\begin{center}
+$\p(\{(O,T)\}) = \p(\overline{A} \cap B) = \p(\overline{A}) \p_{\overline{A}}(B) = \dfrac{1}{3}\dfrac{7}{10}$,
+\end{center}
+ce qui donne
+\begin{center}
+$\p(B) = \dfrac{6}{30}+\dfrac{7}{30} = \dfrac{13}{30}$.
+\end{center}
+
+On peut déterminer entièrement la probabilité $\p$ de la même manière. \\
+
+Moralité : dans cet exercice, on a trouvé les probabilités conditionnelles avec notre bon sens, et on en a déduit les autres probabilités.
+\end{remarque}
+
+La proposition suivante découle immédiatement de la définition :
+
+\begin{proposition}{Caractérisation de l'indépendance}{}
+Soit $(\Omega,\p)$ un espace probabilisé fini, $A$ et $B$ deux événements, avec $\p(B) \ne 0$. \\
+Alors $A$ et $B$ sont indépendants si, et seulement si, $\p_B(A) = \p(A)$.
+\end{proposition}
+
+La probabilité conditionnelle porte bien son nom, c'est en effet une probabilité :
+
+\begin{proposition}{}{}
+Soit $(\Omega,\p)$ un espace probabilisé fini, et $B$ un événement de probabilité non nulle. Alors $\p_B$ est une probabilité sur $\Omega$.
+\end{proposition}
 	
 \end{document}
