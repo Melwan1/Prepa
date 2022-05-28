@@ -116,8 +116,32 @@ Soit $(\Omega,\p)$ un espace probabilisé fini, $A$ et $B$ deux événements.
 	Plus précisément, on a $\p(B \setminus A) = \p(B) - \p(A)$ lorsque $A \subset B$.
 	\item $\p(A \cup B) = \p(A) + \p(B) - \p(A \cap B)$
 	\item Si $A_1,\cdots,A_n$ sont des événements deux à deux incompatibles, alors (additivité finie) :
+	\begin{center}
+	$\displaystyle \p \left(\bigcup_{k=1}^n A_k\right) = \sum_{k=1}^n \p(A_k)$
+	\end{center}
+	
+	\item Si $A_1,\cdots,A_n$ sont des événements quelconques, alors (inégalité de Boole) :
+	\begin{center}
+	$\displaystyle \p\left(\bigcup_{k=1}^n A_k\right) \le \sum_{k=1}^N \P(A_k)$
+	\end{center}
 \end{enumerate}
 
 \end{proposition}
 
+\begin{demo}{}
+Soient $A$ et $B$ deux événements tels que $A \subset B$. Alors $B$ est réunion disjointe de $A$ et de $B \setminus A$, donc 
+\begin{center}
+$\p(B) = \p(A \cup (B \setminus A)) = \p(A)+\underbrace{\p(B \setminus A)}_{\ge 0}$,
+\end{center}
+
+et ceci donne les trois premières assertions (prendre $A = B = \varnothing$ pour la première, $B = \Omega$ pour la deuxième). \\
+À présent, si $A$ et $B$ sont deux événements quelconques, on observe que $A \cup B$ est réunion disjointe de $A$ et de $B \setminus (A \cap B)$ \footnotemark, d'où
+\begin{center}
+$\p(A \cup B) = \p(A) + \p(B \setminus (A \cap B)) = \p(A) + \p(B) - \p(A \cap B)$
+\end{center}
+
+Les deux dernières assertions se prouvent facilement par récurrence.
+\end{demo}
+
+\footnotetext{Faire un dessin pour le voir.}
 \end{document}
