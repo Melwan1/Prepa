@@ -545,5 +545,52 @@ et, en particulier, pour tout $\omega = (\omega_1,\omega_2)\in \Omega$,
 \begin{center}
 $\p(\{\omega\}) = \p_1(\{\omega_1\}) \p_2(\{\omega_2\}) \underset{\text{def}}{=} p_\omega$
 \end{center}
+
+Or il est clair que les nombres $p_\omega$ sont des réels positifs, et de plus
+\begin{center}
+$\displaystyle \sum_{\omega \in \Omega} p_\omega = \sum_{(\omega_1,\omega_2) \in \Omega_1 \times \Omega_2}  \p_1(\{\omega_1\}) \p_2(\{\omega_2\}) = \underbrace{\left(\sum_{\omega_1 \in \Omega_1}\p_1(\{\omega_1\})\right)}_{=1}\underbrace{\left(\sum_{\omega_2 \in \Omega_2} \p_2(\{\omega_2\})\right)}_{=1} = 1$
+\end{center}
+Il existe donc bien une probabilité $\p$ sur $\Omega$ telle que $\p(\{\omega\}) = p_\omega$ pour $\omega \in \Omega$, et $\p$ a bien les propriétés attendues. La probabilité $\p$ ainsi définie s'appelle la \Strong{probabilité produit}. \\
+
+On généralise sans problèmes à la modélisation d'une succession indépendante de $n$ expériences aléatoires, modélisées par les espaces probabilisés finis $(\Omega_i,\p_i)$ ($1 \le i \le n$) : il suffit de considérer l'univers $\Omega = \prod_{i=1}^n \Omega_i$ (produit cartésien des ensembles $\Omega_1, \cdots,\Omega_n$), muni du l'unique probabilité $\p$ telle que, quels que soient les éléments $A_i \subset \Omega_i$ ($1 \le i \le n$) : 
+\begin{center}
+$\p(A_1 \times \cdots \times A_n) = \p_1(A_1) \cdots \p_n(A_n)$.
+\end{center}
+
+On peut en particulier modéliser une succession finie de $n$ expériences aléatoires identiques et indépendantes (on parle d'épreuves répétées). Supposons avoir modélisé une expérience aléatoire par un espace probabilisé fini $(\Omega,\p)$. Alors une suite de $n$ épreuves sera modélisée par l'espace probabilisé $(\Omega^n, \mathbb{Q}$, où la probabilité $\mathbb{Q}$ est telle que : quels que soient les événements $A_1, \cdots, A_n$, 
+\begin{center}
+$\mathbb{Q}(A_1 \times \cdots \times A_n) = \p(A_1) \cdots \p(A_n)$
+\end{center}
+
+En particulier, pour tout élément $\omega = (\omega_1,\cdots,\omega_n) \in \Omega^n$, 
+\begin{center}
+$\mathbb{Q}(\{\omega\}) = \p(\{\omega_1\}) \cdots \p(\{\omega_n\})$
+\end{center}
+
+C'est ainsi qu'on modélise un jeu de pile ou face à $n$ lancers. L'expérience que l'on répète (un lancer) est modélisée en général par $\Omega = \{0,1\}$ (où, par exemple, $1$ représente "pile" et $0$ représente "face"), muni de la probabilité $\p$ définie par $\p(\{1\}) = p \in [0,1]$ et $\p(\{0\}) = 1-p = q$. \\
+La suite des $n$ lancers indépendante est alors modélisée par l'univers $\{0,1\}^n$, muni de la probabilité $\mathbb{Q}$ définie par
+\begin{center}
+$\forall \omega = (\omega_1,\cdots,\omega_n) \in \{0,1\}^n, \mathbb{Q}(\{\omega\}) = \displaystyle \prod_{k=1}^n \p(\{\omega_k\}) = p^\ell q^{n-\ell}$
+\end{center}
+où $\ell$ est le nombre de composantes de $\omega$ qui valent $1$. \\
+
+Dans le cas d'un jeu équitable ($p = q = \dfrac{1}{2}$), on retrouve l'univers $\{0,1\}^n$ muni de la probabilité uniforme. \\
+
+On appellera plus généralement \Strong{épreuve de Bernoulli} toute expérience aléatoire ayant deux issues possibles, baptisées en général "succès" et "échec". Il est clair qu'on peut modéliser une telle expérience par l'univers $\Omega = \{0,1\}$, où $1$ représente (par exemple) le succès, et $0$ l'échec. Une suite de $n$ épreuves de Bernoulli porte le nom de \Strong{schéma de Bernoulli}, et peut se modéliser comme le jeu de pile ou face.
+
+\subsubsection{Probabilité conditionnelle}
+
+\begin{definition}{Probabilité conditionnelle}{}
+Soit $(\Omega,\p)$ un espace probabilisé fini, $A$ et $B$ deux événements, avec $\p(B) \ne 0$. \\
+On appelle \Strong{probabilité conditionnelle} de $A$ sachant $B$, et on note $\p_B(A)$ (ou parfois $\p(A \mid B)$), le nombre 
+\begin{center}
+$\p_B(A) = \dfrac{\p(A \cap B)}{\p(B)}$
+\end{center}
+\end{definition}
+
+On a donc
+\begin{center}
+$\p(A \cap B) = \p(B) \p_B(A)$.
+\end{center}
 	
 \end{document}
