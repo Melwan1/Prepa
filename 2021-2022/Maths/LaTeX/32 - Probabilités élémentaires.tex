@@ -215,6 +215,57 @@ Prouver que :
 \begin{center}
 $\displaystyle \p\left(\bigcup_{k=1}^n A_k\right) = \sum_{k=1}^n (-1)^{k-1} \left(\sum_{1 \le i_1 < \cdots < i_k \le n} \p(A_{i_1} \cap \cdots A_{i_n})\right)$
 \end{center}
+
+La somme intérieure porte sur les suites strictement croissantes de $k$ entiers de $\{1,\cdots,n\}$. L'ensemble de ces suites est en bijection avec l'ensemble des 
+parties à $k$ éléments de $\{1,\cdots,n\}$ (il n'y a qu'une seule façon de classer par ordre croissant les éléments d'une partie de $\{1,\cdots,n\}$). La somme 
+intérieure est donc la somme des probabilités de toutes les intersections possibles de $k$ ensembles parmi $A_1,\cdots,A_n$, elle comporte $\begin{pmatrix} n \\ k\end{pmatrix}$ termes. 
+Le premier terme de la somme (obtenu pour $k = 1$) est la somme des probabilités des ensembles $A_1,\cdots,A_n$, affectée d'un signe $+$. Il y a ensuite alternance de 
+signes entre deux termes consécutifs. Le dernier terme est $(-1)^{n-1}\p(A_1 \cap \cdots \cap A_n)$. \\
+
+On a l'écriture alternative suivante (en notant, pour $k \in \{1,\cdots,n\}$, $\mathcal{P}_k(n)$ l'ensemble des parties à $k$ éléments de l'ensemble $\{1,\cdots,n\}$) :
+\begin{center}
+$\displaystyle \p\left(\bigcup_{k=1}^n A_k\right) = \sum_{k=1}^n (-1)^{k-1} \left(\sum_{I \in \mathcal{P}_k(n)} \p\left(\bigcap_{\ell \in I}\right)\right)$
+\end{center}
+
+Indice : par récurrence.
+
 \end{exemple}
 
+\begin{remarque}[Petite histoire]{}
+Donnons-nous dans un premier temps un ensemble fini $\Omega$.
+\begin{itemize}
+	\item Soit $\p$ une probabilité sur $\Omega$. Si $A$ est un événement, alors $A$ est réunion disjointe des singletons formés d'un élément de $A$, on a donc, par 
+	additivité finie : 
+	\begin{center}
+	$\p(A) = \displaystyle \sum_{\omega \in A} \p(\{\omega\})$
+	\end{center}
+	
+	On voit donc que $\p$ est entièrement déterminée par sa valeur sur les événements élémentaires. \\
+	
+	De plus, pour chaque élément $\omega$ de $\Omega$, on a $\p(\{\omega\}) \ge 0$ et $1 = \p(\Omega) = \displaystyle \sum_{\omega \in \Omega} \p(\{\omega\})$.
+	
+	\item Réciproquement, si on se donne une famille $(p_\omega)_{\omega \in \Omega}$ de nombres réels positifs ou nuls, indexée par $\Omega$, de somme 1, et si on pose, pour $A \in \mathcal{P}(\Omega)$,
+	\begin{center}
+	$\p(A) = \displaystyle \sum_{\omega \in A} p_\omega$
+	\end{center}
+	on vérifie sans difficulté aucune qu'on définit bien de cette manière une probabilité sur l'ensemble fini $\Omega$ (exercice).
+\end{itemize}
+\end{remarque}
+
+Résumons :
+
+\begin{theoreme}{}{}
+Se donner une probabilité sur l'ensemble fini $\Omega$ revient à se donner une famille $(p_\omega)_{\omega \in \Omega}$ de nombres réels positifs ou nuls de somme 1. \\
+Plus précisément, si on dispose d'une telle famille, il y a une et une seule probabilité $\p$ sur $\Omega$ telle que $\p(\{\omega\}) = p_\omega$ pour tout élément $\omega$ de $\Omega$.
+\end{theoreme}
+
+Examinons à présent une situation courante, celle où toutes les issues possibles ont même probabilité : 
+
+\begin{theoreme}{Probabilité uniforme}{}
+Soit $\Omega$ un ensemble fini. Il existe une et une seule probabilité $\p$ sur $\Omega$, appelée \Strong{probabilité uniforme}, qui a la même valeur sur tous les singletons. \\
+On a, pour tout élément $\omega$ de $\Omega$, et pour tout événement $A$ :
+\begin{center}
+$\p(\{\omega\}) = \dfrac{1}{\text{Card } \Omega}$ et $\p(A) = \dfrac{\text{Card } A}{\text{Card } \Omega}$
+\end{center}
+\end{theoreme}
 \end{document}
