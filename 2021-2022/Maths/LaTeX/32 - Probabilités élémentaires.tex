@@ -387,5 +387,54 @@ Soit $(\Omega,\p)$ un espace probabilisé fini.
 	\end{center}
 \end{enumerate}
 \end{definition}
+
+\begin{remarque}{}
+La notion d'indépendance peut ne pas être très intuitive. Pour montrer que deux événements sont indépendants, il faut faire un calcul de probabilité, l'argument ne peut pas être "on voit bien que", notamment dans les énoncés contextualisés. Le mot "indépendant" a ici une signification mathématique précise. Prenons quelques exemples qui vous convaincront, on l'espère :
+\begin{enumerate}
+	\item On joue à pile ou face, on effectue deux lancers consécutifs, on note $p$ la probabilité d'apparition de pile à chaque lancer (c'est un réel compris entre 0 et 1). On modélise cette expérience aléatoire par l'univers $\Omega = \{P,F\}^2$, muni de la probabilité $\p$ définie par :
+	\begin{center}
+		$\P(\{(P,P)\}) = p^2, \p(\{(F,F)\}) = (1-p)^2, \p(\{(F,P)\}) = \p(\{(P,F)\}) = p(1-p)$.
+	\end{center}
+	
+	Considérons $A = \{(P,F),(F,P)\}$ et $B = \{(P,P),(P,F)\}$. \\
+	On a tout de suite $\p(A) = 2p(1-p)$ et $\p(B) = p^2+p(1-p) = p$, tandis que $\p(A \cap B) = p(1-p)$. \\
+	
+	On voit donc que $A$ et $B$ sont indépendants si et seulement si
+	\begin{center}
+	$p(1-p) = 2p^2(1-p)$
+	\end{center}
+	ce qui ne laisse que les solutions $p = 0$, $p = 1$ et $p = \dfrac{1}{2}$. \\
+	En particulier, dans le cas d'un jeu équilibré ($p = 1/2$), les événements $A$ et $B$ sont indépendants, alors qu'il ne le sont pour aucune valeur non triviale de $p$ (et pourtant, ce sont les mêmes événements). 
+	
+	\item On considère l'ensemble des familles de trois enfants (du point de vue de la distribution des sexes). En notant $f$ pour fille, $g$ pour garçon, on a 8 possibilités pour les familles de trois enfants (on les range du plus vieux au plus jeune), qu'on va considérer comme étant équiprobables (ce n'est peut-être pas là la bonne modélisation). Autrement dit, on considère l'ensemble $\Omega = \{f,g\}^3$, muni de la probabilité uniforme. Un triplet tel que $(f,g,g)$ indique que le premier enfant est une fille, suivie de deux garçons. Chaque triplet a la probabilité $1/8$. \\
+	
+	Soit $A$ l'événement "la famille est mixte" (c'est-à-dire présente des enfants des deux sexes), et $B$ l'événement "la famille a au plus un garçon". \\
+	Le calcul des probabilités donne $\p(A) = \dfrac{3}{4}$, $\p(B) = \dfrac{1}{2}$, et $\p(A \cap B) = \dfrac{3}{8}$, donc $A$ et $B$ sont indépendants. \\
+	
+	Si on considère "les mêmes" événements pour des familles de $4$ enfants, ils ne sont plus indépendants (exercice). Ils ne le sont pas non plus pour les familles de deux enfants.
+\end{enumerate}
+\end{remarque}
+
+\begin{remarque}{}
+Dans le cas de $n$ événements, avec $n \ge 3$, il y a en fait $2^n-n-1$ conditions à vérifier (la relation à vérifier étant triviale pour les parties $I$ de $\{1,\cdots,n\}$ de cardinal 1). Par exemple lorsque $n = 3$, les événements $A$, $B$ et $C$ sont indépendants si et seulement si :
+\begin{center}
+$\p(A \cap B) = \p(A) \p(B)$, $\p(A \cap C) = \p(A) \p(C)$ et $\p(B \cap C) = \p(B) \p(C)$ \\
+$\p(A \cap B \cap C) = \p(A)\p(B) \p(C)$
+\end{center}
+\end{remarque}
+
+L'indépendance de trois événements implique donc l'indépendance deux à deux. On pourrait penser que la réciproque est vraie, mais ce n'est pas le cas. De même, la deuxième condition n'implique pas l'indépendance deux à deux. On vous renvoie aux deux exemples suivants.
+
+\begin{exemple}{}
+Considérons $\Omega = \{a,b,c,d\}$, muni de la probabilité uniforme. Soient $A = \{a,d\}$, $B = \{b,d\}$ et $C = \{c,d\}$. Alors les événements $A,B,C$ sont deux à deux indépendants, mais on a $\p(A\cap B \cap C) \ne \p(A)\p(B)\p(C)$.
+\end{exemple}
+
+\begin{exemple}{}
+Soit $\Omega = \{1,\cdots,8\}$, muni de la probabilité uniforme. On prend $A = B = \{1,5,6,7\}$, et $C = \{1,2,3,4\}$. Alors $\p(A \cap B \cap C) = \p(A) \p(B) \p(C)$, mais $A,B$ et $C$ ne sont pas deux à deux indépendants.
+\end{exemple}
+
+\begin{exemple}[Exercice 7]{}
+Soit $n$ un entier, $n \ge 2$. On modélise un jeu de pile ou face équitable avec $n$ lancers par l'univers $\{0,1\}^n$, muni de la probabilité uniforme. Pour tout entier $i$ compris entre $1$ et $n$, on note $A_i$ l'événement "le $i$-ème lancer à donné pile" (dans notre modèle, $A_i$ est l'ensemble des $\omega = (\omega_1,\cdots,\omega_n)$ tels que $\omega_i = 1$).
+\end{exemple}
 	
 \end{document}
