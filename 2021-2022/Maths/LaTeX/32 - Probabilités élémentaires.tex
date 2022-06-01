@@ -698,6 +698,74 @@ $\p_B(A)\p_B = \p(A \cap B) = \p_A(B) \p(A)$
 Cette formule anodine porte le nom de \Strong{formule de probabilité des causes}. Supposons que l'événement $A$ se produise avant l'événement $B$. On peut alors, connaissant $\p_A(B)$ (la probabilité que $B$ survienne si la cause $A$ s'est produite), trouver $\p_B(A)$ (en quelque sorte, la probabilité que ce soit la cause $A$ qui ait produit $B$). Mais ce n'est là qu'une interprétation. La formule s'applique sans aucun lien de temporalité, ou de causalité entre les événements $A$ et $B$.
 \end{remarque}
 
+\begin{theoreme}{Formule de Bayes}{}
+Soit $(\Omega, \p)$ un espace probabilisé fini, $(A_1,\cdots,A_n)$ un système complet d'événements tels que $\p(A_i) \ne 0$ pour tout $i$. Alors, pour tout événement $B$ tel que $\p(B) \ne 0$, on a 
+\begin{center}
+$\p_B(A_i) = \dfrac{\p(A_i)\p_{A_i}(B)}{\p(B)} = \dfrac{\p(A_i) \p_{A_i}(B)}{\displaystyle \sum_{j=1}^n \p_{A_j}(B) \p(A_j)}$
+\end{center}
+
+En particulier, si $A$ est un événement de probabilité $p \in ]0,1[$, alors pour tout événement $B$ de probabilité non nulle :
+\begin{center}
+$\p_B(A) = \dfrac{\p_A(B) \p(A)}{\p_A(B) \p(A) + \p_{\overline{A}}(B) \p(\overline{A})}$.
+\end{center}
+\end{theoreme}
+
+\begin{demo}{}
+c'est immédiat en combinant le lemme et le théorème précédent.
+\end{demo}
+
+\begin{exemple}{}
+Revenons sur nos deux tireurs (Céline et Olivier)\footnotemark. Retrouvons (sans tout modéliser) la probabilité que la cible soit touchée. Notons $A_1$ l'événement "Céline tire", $A_2$ l'événement "Olivier tire"\footnotemark, et $T$ l'événement "la cible est touchée". L'énoncé nous dit que :
+\begin{center}
+$\p(A_1) = \dfrac{2}{3}, \p(A_2) = \dfrac{1}{2}$, $\p_{A_1}(T) = 0.3$ et $\p_{A_2}(T) = 0.7$.
+\end{center}
+
+\footnotetext{N'oublions pas aussi que Olivier vise beaucoup mieux que Céline... Serait-ce là toute la puissance du Grand Sensei ?}
+
+\footnotetext{Et c'est vrai que c'est un événement, tout le monde admire le Grand Sensei...}
+
+En utilisant la formule des probabilités totales avec le système complet d'événement $(A_1,A_2)$, on a :
+\begin{center}
+$\p(T) = \p(A_1)\p_{A_1}(T) + \p(A_2) \p_{A_2}(T) = \dfrac{2}{3} \dfrac{3}{10} + \dfrac{1}{3} \dfrac{7}{10} = \dfrac{13}{30}$.
+\end{center}
+
+Supposons maintenant qu'un tir a lieu, et que la cible soit touchée. Quelle est la probabilité que ce soit Céline qui ait tiré ? \\
+On cherche maintenant $\p_T(A_1)$, et c'est là qu'on utilise la formule de Bayes.
+\begin{center}
+$\p_T(A_1) = \dfrac{\p_{A_1}(T)\p(A_1)}{\p(T)} = \dfrac{\frac{3}{10}\frac{2}{3}}{\frac{13}{30}} = \dfrac{6}{13}$.
+\end{center}
+\end{exemple}
+
+\pagebreak
+
+\begin{theoreme}{Formules des probabilités composées}{}
+Soit $(\Omega,\p)$ un espace probabilisé fini, $A_1, \cdots, A_n$ des événements (avec $n \ge 2$). On suppose que $\p(A_1 \cap \cdots \cap A_{n-1})\ne 0$. On a alors
+\begin{center}
+$\p(A_1 \cap \cdots \cap A_{n-1} \cap A_n) = \p(A_1)\p(A_2 \mid A_1)\p(A_3 \mid A_1 \cap A_2)\cdots \p(A_n \mid A_1 \cap \cdots A_{n-1})$
+\end{center}
+\end{theoreme}
+
+\begin{demo}{}
+Produit téléscopique.
+\end{demo}
+
+\begin{exemple}{}
+Une urne contient $5$ boules rouges et $7$ boules vertes. On effectue $3$ tirages sans remise. Quelle est la probabilité d'obtenir $3$ boules rouges ? \\
+
+On ne va pas modéliser cette expérience, ce qui est donné ici sont les probabilités conditionnelles. Au passage, pourriez-vous proposer une modélisation de cette expérience aléatoire ? \\
+
+Notons $R_i$ l'événement : le $i$-ème tirage donne une boule rouge. \\
+On a, selon l'énoncé, $\p(R_1) = \dfrac{5}{12}$. \\
+
+$\p(R_2 \mid R_1) = \dfrac{4}{11}$ (puisque : si on a tiré une boule rouge au premier tirage, il reste dans l'urne $11$ boules, dont $4$ rouges), et de même $\p(R_3 \mid R_1 \cap R_2) = \dfrac{3}{10}$. \\
+
+On cherche $\p(R_1 \cap R_2 \cap R_3)$. La formule des probabilités composées donne donc
+\begin{center}
+$\p(R_1 \cap R_2 \cap R_3) = \dfrac{5}{12} \dfrac{4}{11} \dfrac{3}{10}$.
+\end{center}
+
+Quelle est la probabilité qu'une boule rouge apparaisse pour la première fois au deuxième tirage ? Au troisième ?
+\end{exemple}
 
 	
 \end{document}
