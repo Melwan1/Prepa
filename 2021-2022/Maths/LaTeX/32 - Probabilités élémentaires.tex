@@ -459,7 +459,7 @@ $B = B \cap \Omega = B \cap (A \cup \overline{A}) = (B \cap A) \cup (B \cap \ove
 \end{center}
 et les événements $B \cap A$ et $B \cap \overline{A}$ sont incompatibles. On a donc 
 \begin{center}
-$\p(B \cap \overline{A} = \p(B) - \p(B \cap A) = \p(B)-\p(B)\p(A) = \p(B)(1-\p(A)) = \p(B)\p(\overline{A})$. 
+$\p(B \cap \overline{A}) = \p(B) - \p(B \cap A) = \p(B)-\p(B)\p(A) = \p(B)(1-\p(A)) = \p(B)\p(\overline{A})$. 
 \end{center}
 \end{demo}
 
@@ -646,5 +646,58 @@ La probabilité conditionnelle porte bien son nom, c'est en effet une probabilit
 \begin{proposition}{}{}
 Soit $(\Omega,\p)$ un espace probabilisé fini, et $B$ un événement de probabilité non nulle. Alors $\p_B$ est une probabilité sur $\Omega$.
 \end{proposition}
+
+\begin{demo}{}
+Tout d'abord, si $A$ est un événement, alors $A \cap B \subset B$, donc $\p(A \cap B) \le \p(B)$,et ceci assure que $\p_B(A)$ est un réel de l'intervalle $[0,1]$. \\
+
+On a $B \cap \omega = B$, donc $\p_B(\Omega) = 1$. \\
+Enfin, si $A_1$ et $A_2$ sont des événements incompatibles, on a $B \cap (A_1 \cup A_2) = (B \cap A_1) \cup (B \cap A_2)$, et les événements $B \cap A_1$ et $B \cap A_2$ sont incompatibles, on a donc
+\begin{center}
+$\p(B \cap (A_1 \cup A_2)) = \p(B \cap A_1) + \p(B \cap A_2)$
+\end{center}
+et on obtient, en divisant par $\p(B)$, $\p_B(A_1 \cup A_2) = \p_B(A_1) + \p_B(A_2)$. 
+
+\end{demo}
+
+La probabilité conditionnelle hérite donc de toutes les propriétés d'une probabilité, on aura par exemple $\p_B(\overline{A}) = 1- \p_B(A)$, et $\p_B(A_1) \le \p_B(A_2)$ si $A_1 \subset A_2$... \\
+
+Les trois théorèmes qui suivent sont fondamentaux :
+
+\begin{theoreme}{Formule des probabilités totales}{}
+Soit $(\Omega, \p)$ un espace probabilisé fini, $(A_1,\cdots,A_n)$ un système complet d'événements tel que $\p(A_i) \ne 0$ pour tout $i$. Alors, pour tout événement $B$,
+\begin{center}
+$\p(B) = \displaystyle \sum_{i=1}^n \p_{A_i}(B) \p(A_i)$
+\end{center}
+En particulier, si $A$ est un événement tel que $\p(A) \in ]0,1[$, alors pour tout événement $B$, 
+\begin{center}
+$\p(B) = \p_A(B)\p(A) + \p_{\overline{A}}(B)\p(\overline{A})$
+\end{center}
+\end{theoreme}
+
+\begin{demo}{}
+Si $B$ est un événement, on a vu que $\p(B) = \sum_{i=1}^n \p(B \cap A_i)$. Et pour $i$ élément de $\{1,\cdots,n\}$, on a, puisque $\p(A_i) \ne 0, \p(B \cap A_i) = \p_{A_i}(B)\p(\overline{A})$.
+\end{demo}
+
+Avant de donner un exemple d'utilisation, on va donner le deuxième théorème, ils vont souvent ensemble.
+
+\begin{lemme}{}{}
+Soient $A$ et $B$ deux événements de probabilité non nulle d'un espace probabilisé $(\Omega, \p)$. On a
+\begin{center}
+$\p_B(A) = \dfrac{\p(A) \p_A(B)}{\p(B)}$
+\end{center}
+\end{lemme}
+
+\begin{demo}{}
+On a en effet, dans ce cas :
+\begin{center}
+$\p_B(A)\p_B = \p(A \cap B) = \p_A(B) \p(A)$
+\end{center}
+\end{demo}
+
+\begin{remarque}{}
+Cette formule anodine porte le nom de \Strong{formule de probabilité des causes}. Supposons que l'événement $A$ se produise avant l'événement $B$. On peut alors, connaissant $\p_A(B)$ (la probabilité que $B$ survienne si la cause $A$ s'est produite), trouver $\p_B(A)$ (en quelque sorte, la probabilité que ce soit la cause $A$ qui ait produit $B$). Mais ce n'est là qu'une interprétation. La formule s'applique sans aucun lien de temporalité, ou de causalité entre les événements $A$ et $B$.
+\end{remarque}
+
+
 	
 \end{document}
