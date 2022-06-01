@@ -557,7 +557,7 @@ On généralise sans problèmes à la modélisation d'une succession indépendan
 $\p(A_1 \times \cdots \times A_n) = \p_1(A_1) \cdots \p_n(A_n)$.
 \end{center}
 
-On peut en particulier modéliser une succession finie de $n$ expériences aléatoires identiques et indépendantes (on parle d'épreuves répétées). Supposons avoir modélisé une expérience aléatoire par un espace probabilisé fini $(\Omega,\p)$. Alors une suite de $n$ épreuves sera modélisée par l'espace probabilisé $(\Omega^n, \mathbb{Q}$, où la probabilité $\mathbb{Q}$ est telle que : quels que soient les événements $A_1, \cdots, A_n$, 
+On peut en particulier modéliser une succession finie de $n$ expériences aléatoires identiques et indépendantes (on parle d'épreuves répétées). Supposons avoir modélisé une expérience aléatoire par un espace probabilisé fini $(\Omega,\p)$. Alors une suite de $n$ épreuves sera modélisée par l'espace probabilisé $(\Omega^n, \mathbb{Q})$, où la probabilité $\mathbb{Q}$ est telle que : quels que soient les événements $A_1, \cdots, A_n$, 
 \begin{center}
 $\mathbb{Q}(A_1 \times \cdots \times A_n) = \p(A_1) \cdots \p(A_n)$
 \end{center}
@@ -767,5 +767,56 @@ $\p(R_1 \cap R_2 \cap R_3) = \dfrac{5}{12} \dfrac{4}{11} \dfrac{3}{10}$.
 Quelle est la probabilité qu'une boule rouge apparaisse pour la première fois au deuxième tirage ? Au troisième ?
 \end{exemple}
 
+\begin{exemple}[Exercice - Urne de Pólya]{}
+Une urne contient initialement $r \ge 1$ boules rouges, et $b \ge 1$ boules blanches. On effectue des tirages successifs d'une boule, en remettant après chaque tirage la boule tirée avec en plus $c \ge 1$ boules de la même couleur. Pour tout entier $n \ge 1$, on note $R_n$ (resp. $B_n$) l'événement : "la $n$-ème boule tirée est rouge (resp. blanche)"
+\begin{enumerate}
+	\item Quelle est la probabilité que la seconde boule tirée soit rouge ?
+	\item Quelle est la probabilité que la première boule tirée soit rouge sachant que la seconde est rouge ?
+	\item On note $p_n(r,b)$ la probabilité d'obtenir une boule rouge au $n$-ème tirage quand l'urne contient initialement $r$ boules rouges et $b$ boules blanches. Pour tout entier $n \ge 1$, prouver que :
+	\begin{center}
+	$p_{n+1}(r,b) = \dfrac{r}{r+b} p_n(r+c,b) + \dfrac{b}{r+b} p_n(r,b+c)$. 
+	\end{center}
+	
+	En déduire que :
+	\begin{center}
+	$\forall n \in \N^*, \p(R_n) = \dfrac{r}{r+b}$
+	\end{center}
+\end{enumerate}
+\end{exemple}
+
+\newpage
+
+\section{Variables aléatoires}
+
+Etant donnée une expérience aléatoire (modélisée par un espace probabilisé $(\Omega, \p)$), une \Strong{variable aléatoire} est une grandeur (en général numérique) liée à chaque résultat de l'expérience. Par exemple, si l'expérience aléatoire consiste à jeter deux dés, on peut s'intéresser à la somme $X$ obtenue, et s'intéresser ensuite à des probabilités liées à $X$, comme par exemple la probabilité que $X$ soit pair, que $X$ soit égal à une valeur donnée, ou inférieur ou égal à une valeur donnée... \\
+
+Mathématiquement, une variable aléatoire sera une fonction définie sur l'ensemble $\Omega$ (souvent à valeurs réelles). Le terme "variable aléatoire" peut prêter à confusion. Ce n'est pas la fonction qui est aléatoire, mais plutôt son résultat, qui dépend du résultat (hasardeux) de l'expérience aléatoire.
+
+\subsection{Définition. Loi d'une variable aléatoire}
+
+\begin{definition}{Variable aléatoire}{}
+Soit $(\Omega, \p)$ un espace probabilisé fini. On appelle \Strong{variable aléatoire} sur $\Omega$ toute application définie sur $\Omega$, à valeurs dans un certain ensemble $E$. Si l'ensemble $E$ est inclus dans $\R$, on parle de variable aléatoire \strong{réelle}.
+\end{definition}
+
+\begin{exemple}{}
+Les fonctions constantes de $\Omega$ dans un ensemble $E$ sont des variables aléatoires appelées variables aléatoires certaines.
+\end{exemple}
+
+\begin{exemple}{}
+Soit $A$ un événement de l'espace probabilisé $(\Omega,\p)$. La \Strong{fonction indicatrice} de $A$, notée $\bf{1}_A$, est définie par :
+\begin{center}
+$\forall \omega \in \Omega, \bf{1}_A(\omega) = \begin{cases} 1 \text{ si } \omega \in A \\ 0 \text{ sinon} \end{cases}$
+\end{center}
+est une variable aléatoire réelle sur $\Omega$, à valeurs dans $\{0,1\}$.
+\end{exemple}
+
+Le cas le plus courant est celui des variables aléatoires réelles. Il y a des notations réservées, en probabilité, aux variables aléatoires.
+
+\begin{remarque}[Notation]{}
+Soit $X$ une variable aléatoire, définie sur l'espace probabilisé $(\Omega, \p)$, à valeurs dans l'ensemble $E$. Si $A$ est une partie de $E$, rappelons qu'on note traditionnellement $X^{-1}(A)$ l'image réciproque de $A$ par $X$ ; c'est l'ensemble des éléments $\omega$ de $\Omega$ tels que $X(\omega) \in A$. 
+\begin{center}
+$X^{-1}(A) = \{\omega \in \Omega \mid X(\omega) \in A\}$.
+\end{center}
+\end{remarque}
 	
 \end{document}
