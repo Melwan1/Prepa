@@ -1342,5 +1342,51 @@ On a alors, en appliquant l'inégalité de Markov (avec la variable aléatoire $
 $\p(\{Y \ge \varepsilon\}) = \p(\{Y^2 \ge \varepsilon^2\}) \le \dfrac{\E(Y^2)}{\varepsilon^2} = \dfrac{V(X)}{\varepsilon^2}$
 \end{center}
 \end{demo}
+
+\begin{exemple}{}
+Un énoncé contextualisé : 1600 voyageurs se répartissent au hasard dans deux trains de 840 places. Majorer la probabilité qu'il y ait des personnes voyageant debout. \\
+
+Nommons les deux trains $T_1$ et $T_2$, soit $X$ le nombre de voyageurs qui montent dans le train $T_1$ (le nombre de voyageurs qui prennent le train $T_2$ est donc $1600-X$). L'énoncé nous incite clairement à penser que $X$ suit une loi binomiale $X \hookrightarrow \mathcal{B}(1600,1/2)$ (on peut voir les 1600 choix comme un esuite d'épreuves de Bernoulli indépendantes, avec probabilité de succès $\dfrac{1}{2}$ (qui correspond à un choix au hasard), si on appelle succès le fait de choisir le train $T_1$), on a donc $\E(X) = 800$, et $V(X) = 400$. \\
+
+L'événement $A$ : "il y a des voyageurs qui n'ont pas de place assise" est 
+\begin{align*}
+A &= \{X > 840\} \cup \{X < 760 \} \\
+&= \{X-\E(X) > 40\} \cup \{X-\E(X) < -40\} \\
+&= \{\abs{X-\E(X)} > 40\} \\
+&= \{\abs{X-\E(X)} \ge 41\}
+\end{align*}
+
+car $\abs{X-\E(X)}$ est à valeurs dans $\N$. \\
+
+L'inégalité de \textsc{Bienaymé-Tchebychev} permet d'écrire :
+\begin{center}
+$\p(A) \le \p(\{\abs{X-\E(X)} \ge 41\}) \le \dfrac{V(X)}{41^2} \simeq 0.2379...$
+\end{center}
+
+Il y a moins d'une chance sur quatre qu'il y ait des voyageurs sans place assise. La probabilité que tout le monde trouve une place assise est donc supérieure ou égale à $0.76$. \\
+En fait, cette probabiité peut se calculer (si on admet que $X$ suit une loi binomiale de paramètres $1600$ et $0.5$). L'événement "tout le monde a une place assise" est $\{760 \le X \le 840\}$. Cet événement est la réunion disjointe des événements $\{X=k\}$ lorsque $k$ décrit $\{760,\cdots,840\}$, sa probabilité est donc 
+\begin{center}
+$P = \displaystyle \sum_{k=760}^{840} \p(X=k) = \sum_{k=760}^{840} \binom{1600}{k} \dfrac{1}{2^k}\dfrac{1}{2^{1600-k}} = \dfrac{1}{2^{1600}} \sum_{k=760}^{840} \binom{1600}{k}$.
+\end{center}
+
+Cette somme n'est pas très facile à calculer en pratique (à cause de l'énormitude des coefficients binomiaux et de la taille ridicule de $(0.5)^{1600}$. Si on utilise (comme vous l'avez vu en terminale) l'approximation normale de la loi binomiale (qui est assez précise), on trouve que $P$ est supérieur ou égal à $0.95$. Tout ceci pour souligner que l'inégalité de \textsc{Bienaymé-Tchebychev} n'a pas donné une estimation très précise... Mais c'est mieux que rien. L'intérêt est qu'on a pas besoin de la connaître la loi de $X$ pour appliquer l'inégalité, mais uniquement son espérance et sa variance.
+\end{exemple}
+
+\subsection{Indépendance de variables aléatoires}
+
+\subsubsection{Cas de deux variables aléatoires}
+
+\begin{definition}{Indépendance de deux variables aléatoires}{}
+Soit $(\Omega, \p)$ un espace probabilisé fini, $E,F$ deux ensembles, $X$ une variable aléatoire sur $\Omega$ à valeurs dans $E$, $Y$ une variable aléatoire sur $\Omega$ à valeurs dans $F$. On dit que $X$ et $Y$ sont \Strong{indépendantes} lorsque pour tout partie $A$ de $E$, et toute partie $B$ de $F$, les événements $\{X\in A\}$ et $\{Y \in B\}$ sont indépendants, c'est-à-dire si 
+\begin{center}
+$\p(\{X \in A\} \cap \{Y \in B\}) = \p(X \in A) \p(Y \in B)$
+\end{center}
+\end{definition}
+
+\begin{remarque}[Notation]{}
+Gardons les notations de la définition. On écrira souvent $\p(X \in A, Y \in B)$ au lieu de $\p(\{X \in A\} \cap \{Y \in B\})$. De même, so $x$ est élément de $E$ et $y$ élément de $F$, on écrira $\p(X=x,Y=y)$ au lieu de $\p(\{X = x\} \cap \{Y = y\})$. \\
+\end{remarque}
+
+On a une façon pratique de prouver l'indépendance, en considérant les valeurs prises par $X$ et $Y$.
 	
 \end{document}
