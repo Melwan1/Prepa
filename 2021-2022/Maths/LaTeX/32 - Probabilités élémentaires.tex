@@ -1097,5 +1097,69 @@ $\abs{E(XY)} \le \sqrt{\E(X^2)}\sqrt{E(Y^2)}$
 On pourra s'inspirer de la preuve vue pour les intégrales.
 \end{exemple}
 
+\begin{corollaire}{}{}
+Si $X$ est une variable aléatoire réelle, alors pour tous réels $\alpha$ et $\beta$, on a 
+\begin{center}
+$\E(\alpha X + \beta) = \alpha \E(X) + \beta$
+\end{center}
+\end{corollaire}
+
+\begin{definition}{Variable aléatoire réelle centrée}{}
+Une variable aléatoire réelle $X$ est dite \Strong{centrée} lorsque $\E(X) = 0$.
+\end{definition}
+
+La proposition qui suit est immédiate.
+
+\begin{proposition}{}{}
+Si $X$ est une variable aléatoire réelle, alors $X-\E(X)$ est centrée
+\end{proposition}
+
+L'inégalité qui suit est assez utile (surtout à vrai dire une de ses variantes connue sous le nom de l'inégalité de \textsc{Bienaymé-Tchebychev}, voir le paragraph sur la variance), bien que pas très précise.
+
+\begin{theoreme}{Inégalité de Markov}{}
+Soit $X$ une variable aléatoire réelle positive, définie sur l'espace probabilisé fini $(\Omega, \p)$, et $\varepsilon$ un réel strictement positif. Alors 
+\begin{center}
+$\p(\{X \ge \varepsilon\}) \le \dfrac{\E(X)}{\varepsilon}$
+\end{center}
+\end{theoreme}
+
+\begin{demo}{}
+On a $X \ge \varepsilon \textbf{1}_{\{X \ge \varepsilon\}}$ : notons en effet $A$ l'événement $\{X \ge \varepsilon\}$. Soit $\omega$ un élément de $\Omega$ : 
+\begin{itemize}
+	\item Si $\omega \in A$, alors $X(\omega) \ge \varepsilon$, et $\varepsilon \textbf{1}_A(\omega) = \varepsilon$
+	\item Si $\omega \not \in A$, alors $\varepsilon \textbf{1}_A(\omega) = 0$, et $X(\omega) \ge 0$
+\end{itemize}
+
+On en déduit par croissance de l'espérance :
+\begin{center}
+$\E(X) \ge \varepsilon \E(\textbf{1}_A) = \varepsilon \p(A) = \varepsilon \p(\{X \ge \varepsilon \})$
+\end{center}
+d'où le résultat.
+\end{demo}
+
+\begin{remarque}{}
+L'inégalité de Markov n'a d'intérêt que si $\dfrac{\E(X)}{\varepsilon}$ est inférieur ou égal à $1$...
+\end{remarque}
+
+Le théorème qui suit est très utile, il permet le calcul de l'espérance d'une variable aléatoire du type $f(X)$, où $X$ est une variable aléatoire en connaissant seulement la loi de $X$ (et non celle de $f(X)$ qui peut être compliquée à calculer).
+
+\begin{theoreme}{Formule de transfert}{}
+Soit $(\Omega, \p)$ un espace probabilisé fini, $E$ un ensemble, $X$ une application de $\Omega$ dans $E$ ($X$ est donc une variable aléatoire), $f$ une application de $E$ dans $\R$. On note $f(X)$ la variable aléatoire réelle $f\circ X$. Alors 
+\begin{center}
+$\E(f(X)) = \displaystyle \sum_{x \in X(\Omega)} f(x) \p(X=x)$
+\end{center}
+\end{theoreme}
+
+\begin{demo}{}
+On utilise à nouveau la famille $(\{X = x\})_{x \in X(\Omega)}$, qui est un système complet d'événements, on a donc une partition de l'espace $\Omega$. En utilisant le lemme, on a 
+\begin{center}
+$\E(f(X)) = \displaystyle \sum_{\omega \in \Omega} f(X(\omega)) \p(\{\omega\})$
+\end{center}
+
+En sommant par paquets, il vient alors :
+\begin{center}
+$\E(f(X)) = \displaystyle \sum_{x \in X(\Omega)} \left(\sum_{\omega \in \{X = x\}} f(X(\omega)) \p(\{\omega\})\right)$
+\end{center}
+\end{demo}
 	
 \end{document}
