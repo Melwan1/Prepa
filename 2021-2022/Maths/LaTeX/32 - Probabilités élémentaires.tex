@@ -1048,4 +1048,54 @@ $\E(X) = \displaystyle \sum_{\omega \in \Omega} X(\omega) \p(\{\omega\})$
 \end{center}
 \end{lemme}
 
+\begin{demo}{}
+La famille $(\{X=x\})_{x \in X(\omega)}$ est un système complet d'événements, on a donc une partition de l'ensemble des indices $\Omega$. Donc, en sommant par paquets :
+\begin{align*}
+\sum_{\omega \in \Omega} X(\omega) \p(\{\omega\}) &= \sum_{x \in X(\Omega)} \left(\sum_{\omega \in \{X=x\}} \underbrace{X(\omega)}_{x}\p(\{\omega\})\right) \\
+&= \sum_{x \in X(\Omega)} x \underbrace{\sum_{\omega \in \{X=x\}} \p(\{\omega\})}_{\p(\{X=x\})} \\
+&= \sum_{x \in X(\Omega)} x \p(X=x) = \E(X)
+\end{align*}
+d'où le résultat.
+\end{demo}
+
+\begin{theoreme}{}{}
+Soit $(\Omega, \p)$ un espace probabilisé fini, $X$ et $Y$ des variables aléatoires sur $\Omega$.
+\begin{enumerate}
+	\item Linéarité : pour tout réel $\alpha$, $\E(\alpha X + Y) = \alpha \E(X) + \E(Y)$
+	\item Positivité : si $X$ est positive alors $\E(X) \ge 0$. De plus, $\E(X) = 0$ si et seulement si $\p(X=0) = 1$ : on dit que $X$ est nulle presque sûrement.
+	\item Croissance : Si $X \le Y$ alors $\E(X) \le \E(Y)$
+	\item On a : $\abs{\E(X)} \le \E(\abs{X})$
+\end{enumerate}
+\end{theoreme}
+
+\begin{demo}{}
+La première propriété résulte de la linéarité des sommes, en utilisant le lemme précédent. Cette propriété ne serait pas si facile à prouver sans le lemme. \\
+
+Supposons $X$ positive, alors l'ensemble des valeurs prises par $X$ est inclus dans $\R_+$.
+\begin{center}
+$\E(X) = \displaystyle \sum_{x \in X(\Omega)} \underbrace{x \p(X=x)}_{\ge 0} \ge 0$, 
+\end{center}
+et comme une somme de réels positifs est nulle si et seulement si tous ses termes sont nuls, on voit que si $\E(X)$ est nul alors pour tout élément strictement positif $x$ de $X(\Omega)$, on a $\p(X=x) = 0$, ceci entraîne que
+\begin{center}
+$1 = \p(X=0) + \displaystyle \sum_{\substack{x \in X(\Omega) \\ x \ne 0}} \p(X=x) = \p(X=0)$
+\end{center}
+
+Réciproquement, si $\p(X=0) = 1$, alors pour tout $x$ non nul élément de $X(\Omega)$, on a $\p(X=x) = 0$, en effet :
+\begin{center}
+$1 = \p(X=0) + \displaystyle \sum_{\substack{x \in X(\Omega) \\ x \ne 0}} \p(X=x)$,
+\end{center}
+donc la somme de réels positifs $\displaystyle \sum_{\substack{x \in X(\Omega) \\ x \ne 0}} \p(X=x)$ est nulle, et tous ses termes sont nuls. On en déduit immédiatement que $\E(X) = 0$. \\
+
+Les deux dernières propriétés (analogues à celles de l'intégrale) sont laissées en exercice.
+\end{demo}
+
+\begin{exemple}[Exercice 12]{}
+Soient $X,Y$ des variables aléatoires réelles, sur un espace probabilisé fini $(\Omega, \p)$. Prouver l'inégalité de \textsc{Cauchy-Schwarz} :
+\begin{center}
+$\abs{E(XY)} \le \sqrt{\E(X^2)}\sqrt{E(Y^2)}$
+\end{center}
+On pourra s'inspirer de la preuve vue pour les intégrales.
+\end{exemple}
+
+	
 \end{document}
