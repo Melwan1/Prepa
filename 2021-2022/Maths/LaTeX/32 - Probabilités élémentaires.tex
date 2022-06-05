@@ -1223,5 +1223,60 @@ Soit $X$ une variable aléatoire qui suit la loi de Bernoulli $\mathcal{B}(1/2)$
 Si $Z = (X,Y)$, alors $Z(\Omega) = \{(0,1),(1,0)\}$, est strictement inclus dans $\{0,1\}^2$.
 \end{exemple}
 
+\subsubsection{Variance et écart-type}
+
+Soit $X$ une variable aléatoire réelle. On souhaite mesurer comment $X$ dévie de sa valeur moyenne $m = \E(X)$. Pour $\omega \in \Omega, \abs{X(\omega)-m}$ est la distance de $X(\omega)$ à $m$. Si on fait la moyenne pondérée de ces distances, on obtient une première mesure $\Delta$ de la déviation de $X$ par rapport à $m$ :
+\begin{center}
+$\Delta = \E(\abs{X-m}) = \displaystyle \sum_{x \in X(\Omega)} \abs{x-m} \p(X=x)$.
+\end{center}
+
+Il s'avère malheureusement que cette quantité, bien que très naturelle, n'est vraiment pas pratique dans les calculs. On va la remplacer par la moyenne des carrés des déviations, quantité qui se prête beaucoup mieux aux calculs, et qui fournit également une mesure de l'écart par rapport à la moyenne.
+
+\pagebreak
+
+\begin{definition}{Variance, écart-type}{}
+Soit $X$ une variable aléatoire réelle. Par définition, la \Strong{variance} de $X$ est 
+\begin{center}
+$V(X) = \E((X-\E(X))^2)$
+\end{center}
+
+L'\Strong{écart-type} $\sigma(X)$ est la racine carrée de la variance : 
+\begin{center}
+$\sigma(X) = \sqrt{V(X)}$
+\end{center}
+\end{definition}
+
+\begin{remarque}{}
+Il est clair que $X-\E(X)$ est une variable aléatoire (on confond le réel $\E(X)$ et la variable aléatoire certaine $\omega \mapsto \E(X)$). Comme $(X-\E(X))^2$ est positive, $V(X)$ est un réel positif ou nul (et $\sigma(X)$ est bien défini). \\
+De plus, $V(X)$ est nul si et seulement si $(X-\E(X))^2$ est nulle presque sûrement, ce qui équivaut à $X = \E(X)$ presque sûrement, on dit que $X$ est une variable aléatoire \strong{quasi-certaine}, c'est-à-dire qu'il existe un réel $a$ tel que $\p(X=a) = 1$.
+\end{remarque}
+
+\begin{remarque}{}
+On a défini l'écart-type par souci d'homogénéité, comme diraient nos chers physiciens : si $X$ est une longueur et s'exprime en mètres, il en est de même que $\sigma(X)$ (alors que $V(X)$ a la dimension d'une surface).
+\end{remarque}
+
+\begin{remarque}{}
+D'après la formule de transfert, on a, pour une variable aléatoire $X$ d'espérance $m$ : 
+\begin{center}
+$V(X) = \displaystyle \sum_{x \in X(\Omega)} (x-m)^2 \p(X=x)$
+\end{center}
+Ceci permet de voir que la variance ne dépend que de la loi de $X$. \\
+
+Si $X$ et $Y$ ont même loi, alors $V(X) = V(Y)$. \\
+
+Cette formule conduit souvent à des calculs un peu pénibles. Elle est avantageusement remplacée par la formule suivante.
+\end{remarque}
+
+\begin{proposition}{Formule de Koenig-Huygens}{}
+Si $X$ est une variable aléatoire réelle, alors \\
+$V(X) = \E(X^2)-(\E(X))^2$
+\end{proposition}
+
+\begin{demo}{}
+Notons $m = \E(X)$. On a $(X-m)^2 = X^2-2mX+m^2$, donc par linéarité de l'espérance : 
+\begin{center}
+$V(X) = \E(X^2) - 2m\E(X) + \E(m^2) = \E(X^2) - 2m \E(X) + \E(m^2) = \E(X^2) - 2m^2 + m^2 = \E(X^2) - m^2$
+\end{center}
+\end{demo}
 	
 \end{document}
