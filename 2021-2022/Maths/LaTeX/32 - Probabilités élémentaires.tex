@@ -1445,5 +1445,62 @@ $\forall (i,j) \in \{1,\cdots,m\} \times \{1,\cdots,n\}, \p(\{(x_i,y_j)\}) = p_i
 \end{center}
 On prend pour $X$ l'application $(x,y) \mapsto x$ et pour $Y$ l'application $(x,y) \mapsto y$, les vérifications sont laissées en exercice.
 \end{demo}
+
+\begin{remarque}{}
+On peut en particulier parler de deux variables aléatoires indépendantes de même loi, par exemple une loi de Bernoulli de paramètre $p$. Un tel couple de variables aléatoires modélise parfaitement un jeu de pile ou face à deux lancers, avec probabilité $p$ d'apparition de pile à chaque lancer.
+\end{remarque}
+
+\begin{theoreme}{Fonctions de variables aléatoires indépendantes}{}
+Soit $(\Omega, \p)$ un espace probabilisé fini, $E,F$ deux ensembles, $X$ une variable aléatoire sur $\Omega$ à valeurs dans $E$, $Y$ une variable aléatoire sur $\Omega$ à valeurs dans $F$. Soit $f$ une application de $E$ dans un ensemble $E'$, $g$ une application de $F$ dans un ensemble $F'$. \\
+Si $X$ et $Y$ sont indépendantes, alors $f(X)$ et $g(Y)$ le sont aussi.
+\end{theoreme}
+
+\begin{demo}{}
+Soit $A'$ une partie de $E'$, et $B'$ une partie de $F'$. Notons $A = f^{-1}(A')$ et $B = f^{-1}(B')$. Alors $A$ est une partie de $E$ et $B$ est une partie de $F$, et on a, par définition de l'image réciproque, 
+\begin{center}
+$\{f(X) \in A'\} = \{X \in A\}$ et $\{g(Y) \in B'\} = \{Y \in B\}$
+\end{center}
+Si bien que, par indépendance de $X$ et $Y$ : 
+\begin{align*}
+\p(\{f(X) \in A'\} \cap \{g(Y) \in B'\}) &= \p(\{X \in A\} \cap \{Y \in B\}) \\
+&= \p(\{X \in A\})\p(\{Y \in B\}) \\
+&= \p(f(X) \in A')\p(g(Y) \in B')
+\end{align*}
+\end{demo}
+
+Le théorème précédent permet d'affirmer que si $X$ et $Y$ sont des variables aléatoires réelles indépendantes, alors $e^X$ et $\sqrt{1+Y^2}$ sont aussi indépendantes. \\
+
+Voyons à présent une propriété très importante, entraînée par l'indépendance.
+
+\begin{theoreme}{}{}
+Soient $X$ et $Y$ deux variables aléatoires réelles indépendantes. Alors
+\begin{center}
+$\E(XY) = \E(X)\E(Y)$
+\end{center}
+\end{theoreme}
+
+\begin{demo}{}
+On a vu que 
+\begin{center}
+$\E(XY) = \displaystyle \sum_{(x,y) \in X(\Omega) \times Y(\Omega)} xy \p(X=x,Y=y)$
+\end{center}
+
+On a alors, en utilisant l'indépendance,
+\begin{align*}
+\sum_{(x,y) \in X(\Omega) \times Y(\Omega)} xy\p(X=x,Y=y) &= \sum_{(x,y) \in X(\Omega) \times Y(\Omega)} xy \p(X=x)\p(Y=y) \\
+&= \left(\sum_{x \in X(\Omega)} x\p(X=x)\right) \left(\sum_{y \in Y(\Omega)} y\p(Y=y)\right) \\
+&= \E(X) \E(Y)
+\end{align*}
+\end{demo}
+
+\subsubsection{Cas d'un nombre fini de variables aléatoires}
+
+\begin{definition}{}{}
+Soit $n$ un entier non nul, $X_1,\cdots,X_n$ des variables aléatoires définies sur un espace probabilisé fini $(\Omega, \p)$, à valeurs dans les ensembles $E_1,\cdots,E_n$. \\
+
+On dit que $X_1 , \cdots, X_n$ sont \Strong{indépendantes} lorsque quelles que soient la partie $A_1$ de $E_1, \cdots, A_n$ de $E_n$, les événements $\{X_1 \in A_1\}, \cdots, \{X_n \in A_n\}$ sont indépendants.
+\end{definition}
+
+Comme dans le cas de deux variables (preuves similaires), on a les faits suivants :
 	
 \end{document}
