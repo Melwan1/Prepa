@@ -1369,7 +1369,7 @@ En fait, cette probabiité peut se calculer (si on admet que $X$ suit une loi bi
 $P = \displaystyle \sum_{k=760}^{840} \p(X=k) = \sum_{k=760}^{840} \binom{1600}{k} \dfrac{1}{2^k}\dfrac{1}{2^{1600-k}} = \dfrac{1}{2^{1600}} \sum_{k=760}^{840} \binom{1600}{k}$.
 \end{center}
 
-Cette somme n'est pas très facile à calculer en pratique (à cause de l'énormitude des coefficients binomiaux et de la taille ridicule de $(0.5)^{1600}$. Si on utilise (comme vous l'avez vu en terminale) l'approximation normale de la loi binomiale (qui est assez précise), on trouve que $P$ est supérieur ou égal à $0.95$. Tout ceci pour souligner que l'inégalité de \textsc{Bienaymé-Tchebychev} n'a pas donné une estimation très précise... Mais c'est mieux que rien. L'intérêt est qu'on a pas besoin de la connaître la loi de $X$ pour appliquer l'inégalité, mais uniquement son espérance et sa variance.
+Cette somme n'est pas très facile à calculer en pratique (à cause de l'énormitude des coefficients binomiaux et de la taille ridicule de $(0.5)^{1600}$). Si on utilise (comme vous l'avez vu en terminale) l'approximation normale de la loi binomiale (qui est assez précise), on trouve que $P$ est supérieur ou égal à $0.95$. Tout ceci pour souligner que l'inégalité de \textsc{Bienaymé-Tchebychev} n'a pas donné une estimation très précise... Mais c'est mieux que rien. L'intérêt est qu'on a pas besoin de la connaître la loi de $X$ pour appliquer l'inégalité, mais uniquement son espérance et sa variance.
 \end{exemple}
 
 \subsection{Indépendance de variables aléatoires}
@@ -1388,5 +1388,62 @@ Gardons les notations de la définition. On écrira souvent $\p(X \in A, Y \in B
 \end{remarque}
 
 On a une façon pratique de prouver l'indépendance, en considérant les valeurs prises par $X$ et $Y$.
+
+\begin{proposition}{}{}
+Soit $(\Omega,\p)$ un espace probabilisé fini, $E,F$ deux ensembles, $X$ une variable aléatoire sur $\Omega$ à valeurs dans $E$ et $Y$ une variable aléatoire sur $\Omega$ à valeurs dans $F$. Alors $X$ et $Y$ sont indépendantes si et seulement si pour tout élément $(x,y)$ de $X(\Omega)\times Y(\Omega)$, on a 
+\begin{center}
+$\p(X=x,Y=y) = \p(X=x)\p(Y=y)$
+\end{center}
+\end{proposition}
+
+\begin{demo}{}
+Supposons tout d'abord $X$ et $Y$ indépendantes. Soit $(x,y)$ un élément de $X(\Omega) \times Y(\Omega)$. \\
+$\{X=x\}$ est l'événement $\{X \in \{x\}\}$ et $\{Y=y\}$ est l'événement $\{Y \in \{y\}\}$ donc par définition de l'indépendance (prendre $A = \{x\}$ et $B = \{y\}$), 
+\begin{center}
+$\p(X=x,Y=y) = \p(\{X \in \{x\}\} \cap \{Y \in \{y\}\}) = \p(\{X \in \{x\}) \p(\{Y \in \{y\}\}) = \p(X=x)\p(Y=y)$
+\end{center}
+
+Réciproquement, supposons que pour tout élément $(x,y)$ de $X(\Omega) \times Y(\Omega)$, on a 
+\begin{center}
+$\p(X=x,Y=y) = \p(X=x)\p(Y=y)$.
+\end{center}
+
+Soit $A$ une partie de $E$, $B$ une partie de $F$. \\
+L'événement $\{X \in A\} \cap \{Y \in B\}$ est la réunion des événements $\{X=a\} \cap \{Y = b\}$ obtenus lorsque le couple $(a,b)$ décrit l'ensemble fini $(X(\Omega) \cap A) \times (Y(\Omega) \cap B)$, et ces événements sont deux à deux incompatibles, on a donc, en notant $A' = A \cap X(\Omega)$ et $B' = B \cap Y(\Omega)$ :
+\begin{align*}
+\p(X \in A, Y \in B) &= \sum_{(a,b) \in A' \times B'} \p(X=a,Y=b) \\
+&= \sum_{(a,b) \in A' \times B'} \p(X=a) \p(X=b) \quad \text{selon l'hypothèse} \\
+&= \left(\sum_{a \in A'} \p(X=a)\right)\left(\sum_{b \in B'} \p(Y=b)\right)
+\end{align*}
+
+Or l'événement $\{X \in A\}$ et réunion disjointe des événements $\{X=a\}$ obtenus lorsque $a$ décrit $A'$, on a donc $\p(X \in A) = \sum_{a \in A'} \p(X=a)$. \\
+De même, on a $\p(Y \in B) = \sum_{b \in B'} \p(Y=b)$.
+
+\end{demo}{}
+
+\begin{exemple}{}
+Modélisons un jeu de pile ou face avec deux lancers par l'univers $\{0,1\}^2$, muni de la probabilité uniforme. Posons, pour $\omega = (\omega_1,\omega_2) \in \Omega, X(\omega) = \omega_1$ (résultat du premier jet) et $Y(\omega) = \omega_2$ (résultat du deuxième lancer). Alors $X$ et $Y$ sont des variables aléatoires indépendantes.
+\end{exemple}
+
+On va voir qu'on peut trouver des variables aléatoires indépendantes de loi donnée comme on veut.
+
+\begin{proposition}{}{}
+Soient $E = \{x_1,\cdots,x_m\}$ et $F = \{y_1,\cdots,y_n\}$ deux ensembles finis de cardinaux respectifs $m$ et $n$, $(p_1,\cdots,p_m)$ et $(q_1,\cdots,q_n)$ deux suites finies de réels positifs telles que
+\begin{center}
+$1 = p_1 + \cdots + p_m = q_1 + \cdots q_n$
+\end{center}
+Alors il existe un espace probabilisé $(\Omega, \p)$ et des variables aléatoires $X$ et $Y$ sur $\Omega$, à valeurs dans $E$ et $F$ respectivement, \strong{indépendantes}, telles que 
+\begin{center}
+$\forall (i,j) \in \{1,\cdots,m\} \times \{1, \cdots,n\}, \p(X=x_i)=p_i$ et $\p(Y=y_j) = q_j$
+\end{center}
+\end{proposition}
+
+\begin{demo}{}
+Il suffit de considérer en effet comme espace probabilisé l'ensemble $\Omega = E \times F$, muni de la probabilité produit $\p$ définie par 
+\begin{center}
+$\forall (i,j) \in \{1,\cdots,m\} \times \{1,\cdots,n\}, \p(\{(x_i,y_j)\}) = p_iq_j$
+\end{center}
+On prend pour $X$ l'application $(x,y) \mapsto x$ et pour $Y$ l'application $(x,y) \mapsto y$, les vérifications sont laissées en exercice.
+\end{demo}
 	
 \end{document}
