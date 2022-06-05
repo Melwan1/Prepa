@@ -825,7 +825,7 @@ En probabilité, cet événement est noté $\{X \in A \}$, et sa probabilité es
 $\{X \in A \} = X^{-1}(A) = \{\omega \in \Omega \mid X(\omega) \in A\}$
 \end{center}
 
-Lorsque $A$ est un singleton $\{a\}$, on note plus simplement $\{X=a\}$ (au lieu de $\{X \in \{a\}\}$ l'image réciproque par $X$ du singleton $\{a\}$ (c'est l'ensemble des antécédents par $X$ de $a$, \ie l'ensemble des $\omega \in \Omega$ tels que $X(\omega) = a$), et on notera $\p(X = a)$ sa probabilité. \\
+Lorsque $A$ est un singleton $\{a\}$, on note plus simplement $\{X=a\}$ (au lieu de $\{X \in \{a\}\}$) l'image réciproque par $X$ du singleton $\{a\}$ (c'est l'ensemble des antécédents par $X$ de $a$, \ie l'ensemble des $\omega \in \Omega$ tels que $X(\omega) = a$), et on notera $\p(X = a)$ sa probabilité. \\
 
 Dans le cas d'une variable aléatoire réelle, pour tout réel $a$, 
 \begin{itemize}
@@ -836,7 +836,7 @@ Dans le cas d'une variable aléatoire réelle, pour tout réel $a$,
 \end{itemize}
 
 \begin{exemple}[Exercice 8]{}
-Soit $\Omega$ un ensemble fini, et $X$ une application de $\Omega \in \R$. Prouver que $X$ est combinaisons linéaires de fonctions indicatrices.
+Soit $\Omega$ un ensemble fini, et $X$ une application de $\Omega \in \R$. Prouver que $X$ est combinaison linéaire de fonctions indicatrices.
 \end{exemple}
 
 \begin{remarque}[Petite Histoire : loi d'une variable aléatoire]{}
@@ -863,7 +863,7 @@ la famille $(\{X=x\})_{x \in X(\Omega)}$ est un système complet d'événements.
 \end{proposition}
 
 \begin{demo}{}
-Il est clair que les divers événements $\{X = x \}$ obtenus pour $x$ décrivant $X(\Omega)$ sont deux à deux disjoints (on ne peut avoir, pour un $\omega$ donné, $X(\omega) = x$ et $X(\omega) = y$ lorsque $x \ne y$), et de réunion $\Omega$ (si $\omega \in \Omega$, alors $\omega$ appartient évidemment à $\{X = X(\omega)\}$ \\
+Il est clair que les divers événements $\{X = x \}$ obtenus pour $x$ décrivant $X(\Omega)$ sont deux à deux disjoints (on ne peut avoir, pour un $\omega$ donné, $X(\omega) = x$ et $X(\omega) = y$ lorsque $x \ne y$), et de réunion $\Omega$ (si $\omega \in \Omega$, alors $\omega$ appartient évidemment à $\{X = X(\omega)\}$) \\
 
 Si $A$ est une partie de $E$, on a alors 
 \begin{center}
@@ -983,7 +983,7 @@ On lance deux dés, $X$ est la somme des deux résultats obtenus. Trouvons la lo
 \end{align*}
 \end{exemple}
 
-\begin{exemple}[Exercice]{}
+\begin{exemple}[Exercice 9]{}
 Donner un exemple de variables aléatoires distinctes qui ont même loi.
 \end{exemple}
 
@@ -997,5 +997,55 @@ Soit $X$ une variable aléatoire réelle, définie sur un univers probabilisé f
 $\E(X) = \displaystyle \sum_{x \in X(\Omega)} x\p(X=x)$
 \end{center}
 \end{definition}
+
+On voit ainsi que $\E(X)$ est la moyenne pondérée des valeurs prises par $X$, le coefficient de pondération de chaque valeur étant la probabilité avec laquelle elle est prise par $X$. 
+\begin{remarque}[Remarque utile]{}
+Soit $X$ une variable aléatoire. Si $E$ est un ensemble fini qui contient l'ensemble fini des valeurs prises par $X$, on a aussi :
+\begin{center}
+$\E(X) = \displaystyle \sum_{x \in E} x \p(X=x)$
+\end{center}
+En effet, il est clair que $\p(X=x) = 0$ si $x$ n'est pas une valeur prise par $X$.
+\end{remarque}
+
+\begin{remarque}{}
+On voit que l'espérance d'une variable aléatoire réelle dépend uniquement de la loi de cette variable aléatoire. Autrement dit, si $X$ et $Y$ sont deux variables aléatoires réelles de même loi ($X$ et $Y$ sont à valeurs dans un même ensemble $E$, et $\p(X=x) = \p(Y=x)$ pour tout élément $x$ de $E$), alors $\E(X) = \E(Y)$.
+\end{remarque}
+
+\begin{exemple}{}
+Si $X$ est une variable aléatoire certaine, égale à un réel $a$, alors $\E(X) = a$.
+\end{exemple}
+
+\begin{exemple}{}
+Si $X$ suit une loi uniforme sur un ensemble $E$, on aura 
+\begin{center}
+$\E(X) = \dfrac{1}{\text{Card } E} \displaystyle \sum_{x \in E} x$
+\end{center}
+\end{exemple}
+
+\begin{exemple}{}
+Soit $(\Omega, \p)$ un espace probabilisé fini, $X$ une variable aléatoire réelle sur $\Omega$. Si $X \hookrightarrow \mathcal{B}(p)$ alors $\E(X) = p$. \\
+
+En particulier, si $A$ est un événement alors $\E(\textbf{1}_A) = \p(A)$.
+\end{exemple}
+
+\begin{exemple}[Exercice 10]{}
+Soit $X$ une variable aléatoire qui suit une loi binomiale de paramètres $n$ et $p$. Alors 
+\begin{center}
+$\E(X) = np$
+\end{center}
+\end{exemple}
+
+\begin{exemple}[Exercice 11]{}
+Soit $n$ et $N$ deux entiers naturels tels que $1 \le n \le N$. On considère l'ensemble $\Omega$ des parties à $n$ éléments de l'ensemble $\{1,\cdots,N\}$. $X$ est l'application de $\Omega$ dans $\R$ définie par $X(A) = \max A$, pour tout $A \in \Omega$. Trouver la loi de $X$, et l'espérance de $X$.
+\end{exemple}
+
+Examinons les principales propriétés de l'espérance. On montre tout d'abord un lemme qui donne une expression alternative de l'espérance, utile pour prouver certaines propriétés.
+
+\begin{lemme}{}{}
+Soit $(\Omega,\p)$ un espace probabilisé fini, $X$ une variable aléatoire sur $\Omega$. On a :
+\begin{center}
+$\E(X) = \displaystyle \sum_{\omega \in \Omega} X(\omega) \p(\{\omega\})$
+\end{center}
+\end{lemme}
 
 \end{document}
