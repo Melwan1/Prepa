@@ -1143,6 +1143,8 @@ L'inégalité de Markov n'a d'intérêt que si $\dfrac{\E(X)}{\varepsilon}$ est 
 
 Le théorème qui suit est très utile, il permet le calcul de l'espérance d'une variable aléatoire du type $f(X)$, où $X$ est une variable aléatoire en connaissant seulement la loi de $X$ (et non celle de $f(X)$ qui peut être compliquée à calculer).
 
+\pagebreak
+
 \begin{theoreme}{Formule de transfert}{}
 Soit $(\Omega, \p)$ un espace probabilisé fini, $E$ un ensemble, $X$ une application de $\Omega$ dans $E$ ($X$ est donc une variable aléatoire), $f$ une application de $E$ dans $\R$. On note $f(X)$ la variable aléatoire réelle $f\circ X$. Alors 
 \begin{center}
@@ -1160,6 +1162,66 @@ En sommant par paquets, il vient alors :
 \begin{center}
 $\E(f(X)) = \displaystyle \sum_{x \in X(\Omega)} \left(\sum_{\omega \in \{X = x\}} f(X(\omega)) \p(\{\omega\})\right)$
 \end{center}
+
+Soit $x$ un élément de $X(\Omega)$. Pour tout élément $\omega$ de $\{X=x\}$, on a $X(\omega) = x$ \footnotemark, donc
+\begin{center}
+$\displaystyle \sum_{\omega \in \{X=x\}} f(X(\omega))\p(\{\omega\}) = \sum_{\omega \in \{X=x\}} f(x) \p(\{\omega\}) = f(x) \sum_{\omega \in \{X=x\}} \p(\{\omega\}) = f(x) \p(\{X=x\})$
+\end{center}
+ce qui entraîne la formule.
 \end{demo}
+
+\footnotetext{Comme l'a magnifiquement écrit M. Sellès dans son magnifique poly : "This is f******** obvious". En tant que 1/2 naïf qui lit les poly de M. Sellès en pensant que le cours était tapé par notre Grand Sensei, je me mis à douter de l'auteur du document : mais non, c'était bien lui. En fait, c'est plutôt logique : de la même façon que Mme Zmihi critique les Américains (cette histoire viendra peut-être), M. Sellès a un jour lancé en plein cours : "This is fucking true !".}
+
+\begin{remarque}[Remarque utile]{}
+Avec les notations du théorème, si $F$ est un ensemble fini qui contient $X(\Omega)$, on a également :
+\begin{center}
+$\E(f(X)) = \displaystyle \sum_{x \in F} f(x) \p(X=x)$
+\end{center}
+car pour tout $x \in F \setminus X(\Omega)$, $\p(X=x) = 0$.
+\end{remarque}
+
+\begin{exemple}[Exercice 13]{}
+Soit $X$ une variable aléatoire réelle qui suit la loi uniforme sur $\{1,\cdots,n\}$. Calculer $\E(X)$ et $\E(X^2)$
+\end{exemple}
+
+\begin{exemple}[Exercice 14]{}
+Si $X$ est une variable aléatoire réelle telle que $X \hookrightarrow \mathcal{B}(n,p)$, calculer $\E(X)$ et $\E(X^2)$.
+\end{exemple}
+
+Voici une application intéressante de la formule de transfert :
+\begin{proposition}{Espérance d'un produit}{}
+Soit $(\Omega, \p)$ un espace probabilisé fini, $X$ et $Y$ deux variables aléatoires réelles sur $\Omega$. On a
+\begin{center}
+$\E(XY) = \displaystyle \sum_{(x,y) \in X(\Omega) \times Y(\Omega)} xy \p(\{X = x\} \cap \{Y = y\})$
+\end{center}
+\end{proposition}
+
+\begin{demo}{}
+Notons $Z$ la variable aléatoire à valeurs dans $\R^2$ définie par :
+\begin{center}
+$\forall \omega \in \Omega, Z(\omega) = (X(\omega,Y(\omega))$
+\end{center}
+
+Soit d'autre part $f$ l'application de $\R^2$ dans $\R$ définie par :
+\begin{center}
+$\forall (x,y) \in \R^2, f(x,y) = xy$.
+\end{center}
+
+On a alors $XY = f(Z)$, et on cherche $\E(f(Z))$. \\
+
+Il est clair que $Z(\Omega)$ est inclus dans l'ensemble fini $E = X(\Omega) \times Y(\Omega)$ (mais l'inclusion peut être stricte, voir l'exemple qui suit), on en déduit, d'après la formule de transfert : 
+\begin{center}
+$\E(f(Z)) = \displaystyle \sum_{z \in E} f(z) \p(Z=z) = \sum_{(x,y) \in E} xy \p(Z=(x,y))$
+\end{center}
+
+Par ailleurs, l'événement $Z=(x,y)$ n'est autre que $\{X = x\} \cap \{Y = y\}$.
+\end{demo}
+
+\begin{exemple}{}
+Soit $X$ une variable aléatoire qui suit la loi de Bernoulli $\mathcal{B}(1/2)$, et $Y = 1-X$. \\
+
+Si $Z = (X,Y)$, alors $Z(\Omega) = \{(0,1),(1,0)\}$, est strictement inclus dans $\{0,1\}^2$.
+\end{exemple}
+
 	
 \end{document}
