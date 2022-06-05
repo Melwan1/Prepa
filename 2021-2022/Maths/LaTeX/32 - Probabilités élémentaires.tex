@@ -1199,7 +1199,7 @@ $\E(XY) = \displaystyle \sum_{(x,y) \in X(\Omega) \times Y(\Omega)} xy \p(\{X = 
 \begin{demo}{}
 Notons $Z$ la variable aléatoire à valeurs dans $\R^2$ définie par :
 \begin{center}
-$\forall \omega \in \Omega, Z(\omega) = (X(\omega,Y(\omega))$
+$\forall \omega \in \Omega, Z(\omega) = (X(\omega),Y(\omega))$
 \end{center}
 
 Soit d'autre part $f$ l'application de $\R^2$ dans $\R$ définie par :
@@ -1276,6 +1276,70 @@ $V(X) = \E(X^2)-(\E(X))^2$
 Notons $m = \E(X)$. On a $(X-m)^2 = X^2-2mX+m^2$, donc par linéarité de l'espérance : 
 \begin{center}
 $V(X) = \E(X^2) - 2m\E(X) + \E(m^2) = \E(X^2) - 2m \E(X) + \E(m^2) = \E(X^2) - 2m^2 + m^2 = \E(X^2) - m^2$
+\end{center}
+\end{demo}
+
+\begin{exemple}{} 
+Si $X \hookrightarrow \mathcal{B}(p)$, alors $\E(X) = p$, $\E(X^2) = 1^2 \p(X=1) = p$, donc (avec $q = 1-p$) :
+\begin{center}
+$V(X) = pq$
+\end{center}
+\end{exemple}
+
+\begin{exemple}[Exercice 15]{}
+Soit $X$ une variable aléatoire réelle, telle que $X \hookrightarrow \mathcal{B}(n,p)$. Prouver que (en notant classiquement $q = 1-p$),
+\begin{center}
+$V(X) = npq$
+\end{center}
+\end{exemple}
+
+\begin{exemple}[Exercice 16]{}
+Soit $X$ une variable aléatoire réelle telle que $X \hookrightarrow \mathcal{U}(\{1,\cdots,n\})$. Trouver $V(X)$.
+\end{exemple}
+
+\begin{proposition}{}{}
+Soit $X$ une variable aléatoire réelle, $\alpha$ et $\beta$ deux réels. Alors 
+\begin{center}
+$V(\alpha X + \beta) = \alpha^2 V(x)$
+\end{center}
+\end{proposition}
+
+\begin{demo}{}
+On a $\E(\alpha X + \beta) = \alpha \E(X) + \beta$. D'autre part, $(\alpha^X + \beta)^2 = \alpha^2 X^2 + 2\alpha \beta X + \beta^2$, on en déduit
+\begin{align*}
+V(\alpha X + \beta) &= \E((\alpha X + \beta)^2) - (\E(\alpha X + \beta))^2 \\
+&= \alpha^2 E(X^2) + 2\alpha \beta \E(X) + \underbrace{\E(\beta^2)}_{=\beta^2} - (\alpha^2(\E(X))^2 + 2\alpha \beta \E(X) + \beta^2) \\
+&= \alpha^2 \E(X^2) -\alpha^2 (\E(X))^2 = \alpha^2 V(X)
+\end{align*}
+\end{demo}
+
+\begin{definition}{Variable aléatoire centrée réduite}{}
+
+On dit qu'une variable aléatoire est \Strong{centrée réduite} si $\E(X) = 0$ et $\sigma(X) = 1$.
+\end{definition}
+
+On a tout de suite : 
+
+\begin{proposition}{}{}
+Si $X$ est une variable aléatoire réelle telle que $V(X) > 0$, alors 
+\begin{center}
+$X^* = \dfrac{X-\E(X)}{\sigma(X)}$
+\end{center}
+est centrée réduite.
+\end{proposition}
+
+\begin{theoreme}{Inégalité de \textsc{Bienaymé-Tchebychev}}{}
+Soit $X$ une variable aléatoire réelle, et $\varepsilon$ un réel strictement positif. On a l'inégalité : 
+\begin{center}
+$\p(\{\abs{X-\E(X)} \ge \varepsilon\}) \le \dfrac{V(X)}{\varepsilon^2}$
+\end{center}
+\end{theoreme}
+
+\begin{demo}{}
+Soit $Y = \abs{X-\E(X)}$, il s'agit d'une variable aléatoire positive. De plus, les événements $\{Y \ge \varepsilon\}$ et $\{Y^2 \ge \varepsilon^2\}$ sont identiques (car si $x$ et $y$ sont des réels positifs, les inégalités $x\le y$ et $x^2 \le y^2$ sont équivalentes). \\
+On a alors, en appliquant l'inégalité de Markov (avec la variable aléatoire $Y^2$) :
+\begin{center}
+$\p(\{Y \ge \varepsilon\}) = \p(\{Y^2 \ge \varepsilon^2\}) \le \dfrac{\E(Y^2)}{\varepsilon^2} = \dfrac{V(X)}{\varepsilon^2}$
 \end{center}
 \end{demo}
 	
