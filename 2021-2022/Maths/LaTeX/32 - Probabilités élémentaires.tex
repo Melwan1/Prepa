@@ -5,6 +5,7 @@
 \begin{document}
 
 \newcommand{\p}{\mathbb{P}}
+\newcommand{\E}{\mathbb{E}}
 
 \section*{Introduction}
 
@@ -818,5 +819,183 @@ Soit $X$ une variable aléatoire, définie sur l'espace probabilisé $(\Omega, \
 $X^{-1}(A) = \{\omega \in \Omega \mid X(\omega) \in A\}$.
 \end{center}
 \end{remarque}
-	
+
+En probabilité, cet événement est noté $\{X \in A \}$, et sa probabilité est notée $\p(X \in A)$ (on laisse tomber les accolades). On a donc 
+\begin{center}
+$\{X \in A \} = X^{-1}(A) = \{\omega \in \Omega \mid X(\omega) \in A\}$
+\end{center}
+
+Lorsque $A$ est un singleton $\{a\}$, on note plus simplement $\{X=a\}$ (au lieu de $\{X \in \{a\}\}$ l'image réciproque par $X$ du singleton $\{a\}$ (c'est l'ensemble des antécédents par $X$ de $a$, \ie l'ensemble des $\omega \in \Omega$ tels que $X(\omega) = a$), et on notera $\p(X = a)$ sa probabilité. \\
+
+Dans le cas d'une variable aléatoire réelle, pour tout réel $a$, 
+\begin{itemize}
+\item On note $\{X \le a \}$ l'événement $\{X \in ]-\infty,a]\}$ et $\p(X \le a)$ sa probabilité. 
+\item On note $\{X < a\}$ l'événement $\{X \in ]-\infty,a[\}$ et $\p(X < a)$ sa probabilité.
+\item On note $\{X \ge a \}$ l'événement $\{X \in [a,+\infty[\}$ et $\p(X \ge a)$ sa probabilité.
+\item On note $\{X > a\}$ l'événement $\{X \in ]a,+\infty[\}$ et $\p(X > a)$ sa probabilité.
+\end{itemize}
+
+\begin{exemple}[Exercice 8]{}
+Soit $\Omega$ un ensemble fini, et $X$ une application de $\Omega \in \R$. Prouver que $X$ est combinaisons linéaires de fonctions indicatrices.
+\end{exemple}
+
+\begin{remarque}[Petite Histoire : loi d'une variable aléatoire]{}
+On se donne un espace probabilisé fini $(\Omega,\p)$ et $X$ une variable aléatoire sur $\Omega$, à valeurs dans un ensemble $E$. \\
+
+Pour toute partie $A$ de $E$, posons 
+\begin{center}
+$\p_X(A) = \p(X \in A)$
+\end{center}
+
+On définit ainsi une fonction de l'ensemble des parties de $E$ dans $]0,1]$. Il est clair que $\p_X(E) = 1$ (puisque $\{X \in E\} = \Omega$). Par ailleurs, si $A$ et $B$ sont deux parties disjointes de $E$, les événements $\{X \in A\}$ et $\{X \in B\}$ sont évidemment incompatibles, et on a $\{X \in A \cup B\} = \{X \in A \} \cup \{X \in B\}$. On en déduit que
+\begin{center}
+$\p_X(A \cup B) = \p_X(A) + \p_X(B)$
+\end{center}
+
+\begin{definition}{}{}
+Autrement dit, $\p_X$ définit une probabilité sur l'ensemble $E$ (du moins lorsque $E$ est fini), c'est cette probabilité qu'on appelle la \Strong{loi} de $X$.
+\end{definition}
+
+Précisons un peu les choses. Notons $X(\Omega)$ l'image directe de $\Omega$ par $X$, il s'agit d'une partie finie de $E$.
+
+\begin{proposition}{}{}
+la famille $(\{X=x\})_{x \in X(\Omega)}$ est un système complet d'événements. En particulier, $(\p(X = x))_{x \in X(\Omega)}$ est une famille de réels positifs de somme $1$.
+\end{proposition}
+
+\begin{demo}{}
+Il est clair que les divers événements $\{X = x \}$ obtenus pour $x$ décrivant $X(\Omega)$ sont deux à deux disjoints (on ne peut avoir, pour un $\omega$ donné, $X(\omega) = x$ et $X(\omega) = y$ lorsque $x \ne y$), et de réunion $\Omega$ (si $\omega \in \Omega$, alors $\omega$ appartient évidemment à $\{X = X(\omega)\}$ \\
+
+Si $A$ est une partie de $E$, on a alors 
+\begin{center}
+$\{X \in A \} = \displaystyle \bigcup_{x \in A \cap X(\Omega)} \{X=x\}$
+\end{center}
+et les divers ensembles qui interviennent dans cette réunion sont deux à deux disjoints. On en déduit par additivité finie que :
+\begin{center}
+$\p_X(A) = \p(X \in A) = \displaystyle \sum_{x \in A \cap X(\Omega)} \p(X=x)$.
+\end{center}
+
+Autrement dit, la fonction d'ensembles $\p_X$ (la loi de $X$) est entièrement déterminée par la connaissance des nombres $\p(X=x)$, obtenus pour $x$ décrivant $X(\Omega)$.
+
+\end{demo}
+
+\begin{definition}{}{}
+Déterminer la loi de la variable aléatoire $X$, c'est déterminer $X(\Omega)$, et pour tout $x$ élément de $X(\Omega)$, donner $\p(X=x)$.
+\end{definition}
+
+Il peut parfois être malaisé de déterminer exactement l'ensemble $X(\Omega)$. On peut se contenter alors de trouver un ensemble fini $G$ tel que $X(\Omega) \subset G$, et de donner alors $\p(X = x)$, pour tout élément $x$ de $G$ (on trouvera $0$ pour les éléments $x \in G \setminus X(\Omega)$). \\
+
+On va voir à présent que si on se donne une probabilité $\Q$ sur un ensemble fini $E$, on peut toujours trouver une variable aléatoire à valeurs dans $E$ dont la loi est $\Q$.
+
+\begin{theoreme}{}{}
+Soit $E$ un ensemble fini non vide, muni d'une probabilité $\Q$. Soit $\Omega$ un ensemble fini de cardinal supérieur ou égal à celui de $E$. Alors il existe une probabilité $\p$ sur $\Omega$, et une variable aléatoire $X$ de $\Omega$ dans $E$ telle que 
+\begin{center}
+$\forall x \in E, \p(X=x) = \Q(\{x\})$
+\end{center}
+\end{theoreme}
+
+\begin{demo}{}
+Notons $E=(x_1,\cdots,x_n)$, où $n = \text{Card } E$. On note aussi $q_i = \Q(\{x_i\})$, pour $1 \le i \le n$. \\
+Notons $\Omega = \{\omega_1,\cdots,\omega_m\}$, où $m = \text{Card }\Omega \ge n$. Soit $\p$ l'unique probabilité sur $\Omega$ définie par 
+\begin{center}
+$\forall i \in \{1,\cdots,m\}, \p(\{\omega_i\}) = \begin{cases} q_i \text{ si } i \le n \\ 0 \text{ si } i > n \end{cases}$.
+\end{center}
+
+et définissons $X$ de $\Omega$ dans $E$ par 
+\begin{center}
+$\forall i \in \{1,\cdots,m\}, X(\omega_i) = \begin{cases} x_i \text{ si } i \le n \\ x_n \text{ si } i > n \end{cases}$
+\end{center}
+
+Soit $i$ un entier compris entre $1$ et $n$.
+\begin{itemize}
+	\item si $i < n$, on a $\{X = x_i\} = \{\omega_i\}$ et $\p(X = x_i) = q_i$
+	\item si $i = n$, alors $\{X = x_n\} = \{\omega_n, \omega_{n+1},\cdots,\omega_m\}$, et donc 
+	\begin{center}
+	$\p(X=x_n) = \p(\{\omega_n\}) + \underbrace{\p(\{\omega_{n+1})}_{ = 0},\cdots,\underbrace{\p(\{\omega_m\})}_{= 0} = q_n$
+	\end{center}
+\end{itemize}
+
+Remarque : si on veut juste une variable aléatoire $X$ de loi $\Q$, il suffit de prendre comme espace probabilisé $(E,\Q)$, et pour $X$ l'identité de $E$.
+
+\begin{remarque}[Bilan]{}
+Si on a un ensemble fini $E=\{x_1,\cdots,x_n\}$, et une famille $(p_1,\cdots,p_n)$ de réels positifs de somme 1, alors il existe une variable aléatoire $X$ définie sur un certain espace probabilisé $(\Omega,\p)$ telle que 
+\begin{center}
+$\forall i \in \{1,\cdots,n\}, \p(X=x_i) = p_i$
+\end{center}
+\end{remarque}
+\end{demo}
+\end{remarque}
+
+\begin{exemple}{Loi uniforme}{}
+Soit $E$ un ensemble fini. Une variable aléatoire $X$ (définie sur un certain espace probabilisé $(\Omega,\p)$) suit la \Strong{loi uniforme} sur $E$ si $X$ est à valeurs dans $E$ et prend chaque valeur de $E$ avec la même probabilité, autrement dit $\p_X$ est la probabilité uniforme sur $E$. Pour cela, il faut et il suffit que :
+\begin{center}
+$\forall x \in E, \p(X=x) = \dfrac{1}{\text{Card } E}$.
+\end{center}
+
+On écrira $X \hookrightarrow \mathcal{U}(E)$ pour signifier que $X$ suit la loi uniforme sur $E$.
+
+\end{exemple}
+
+\begin{exemple}{Loi de Bernoulli}{}
+
+Soit $p$ un nombre compris entre $0$ et $1$. Une variable aléatoire $X$ suit la \Strong{loi de Bernoulli} de paramètre $p$ si $X$ est à valeurs dans $\{0,1\}$, et $\p(X=1) = p$  (donc $\p(X=0) = 1-p$). \\
+On écrira $X \hookrightarrow \mathcal{B}(p)$ pour indiquer que $X$ suit la loi de Bernoulli de paramètre $p$. \\
+
+Par exemple, si on joue à pile ou face, et que $X$ vaut $1$ si on est tombé sur "pile" et $0$ si on est tombé sur "face", alors $X$ suit la loi de Bernoulli de paramètre $p$, où $p$ est la probabilité d'apparition de "pile". \\
+
+Plus généralement, si on a une épreuve de Bernoulli, la variable aléatoire qui vaut $0$ en cas d'échec, et $1$ en cas de succès est une variable de Bernoulli. \\
+
+Si $A$ est un événement d'un espace probabilisé $(\Omega, \p)$, alors $\textbf{1}_A$ suit la loi de Bernoulli de paramètre $\p(A)$.
+
+\end{exemple}
+
+\begin{exemple}{Loi binomiale}{}
+
+Cette loi apparaît naturellement lorsqu'on veut compter le nombre de succès lors d'une succession de $n$ épreuves de Bernoulli indépendantes, avec probabilité de succès $p$ lors de chaque épreuve. Modélisons une telle suite par l'univers $\{0,1\}^n$, muni de la probabilité $\p$ définie par
+\begin{center}
+$\forall \omega = (\omega_1,\cdots,\omega_n) \in \{0,1\}^n, \p(\{\omega\}) = p^\ell q^{n-\ell}$
+\end{center}
+où $\ell$ est le nombre de composantes qui valent $1$, et où $q=1-p$. \\
+
+Soit $X$ l'application de $\Omega$ dans $\R$ qui à $\omega = (\omega_1,\cdots,\omega_n)$ associe le nombre de $1$ du $n$-uplet $\omega$ (c'est le nombre d'indices $i$ tels que $\omega_i = 1$). On voit aussi que $X(\omega)$ est la somme des $\omega_i$. Il est clair que $X$ est à valeurs dans $\{0,\cdots,n\}$. Pour $k$ entier compris entre $0$ et $n$, l'événement $\{X = k\}$ est l'ensemble des $n$-uplets $\omega$ qui ont exactement $k$ composantes égales à $1$. Un tel $\omega$ est entièrement déterminé par les places dans le $n$-uplet des $1$, il y a donc $\binom{n}{k}$ tels $n$-uplets (il s'agit de choisir $k$ numéros de places parmi $n$ possibles), et chacun de ces $n$-uplets est de probabilité $p^kq^{n-k}$. On en déduit que 
+\begin{center}
+$\p(X=k) = \binom{n}{k} p^kq^{n-k}$
+\end{center}
+\end{exemple}
+
+On donne alors la définition suivante :
+\begin{definition}{}{}
+Soit $n \in \N^*$ et $p \in [0,1]$. Une variable aléatoire $X$ suit la loi binomiale de paramètres $n$ et $p$ si $X$ est à valeurs dans $\{0,\cdots,n\}$ et si (avec $q = 1 - p$) :
+\begin{center}
+$\forall k \in \{0,\cdots,n\}, \p(X=k) = \binom{n}{k}p^kq^{n-k}$
+\end{center}
+On écrit alors $X \hookrightarrow \mathcal{B}(n,p)$.
+\end{definition}
+
+\begin{exemple}{}
+On lance deux dés, $X$ est la somme des deux résultats obtenus. Trouvons la loi de $X$. L'univers choisi est ici $\Omega = \{1,\cdots,6\}^2$, muni de la probabilité uniforme. Il est clair que $X$ est à valeurs dans $\{2,\cdots,12\}$. Il s'agit donc de compter, pour $2 \le k \le 12$, combien il y a de couples d'entiers de $\{1,\cdots,6\}$ dont la somme vaut $k$. On trouve :
+\begin{align*}
+\p(X=2) = \dfrac{1}{36} \quad & \quad \p(X=3) = \dfrac{2}{36} \\
+\p(X=4) = \dfrac{3}{36} \quad & \quad \p(X=5) = \dfrac{4}{36} \\
+\p(X=6) = \dfrac{5}{36} \quad & \quad \p(X=7) = \dfrac{6}{36} \\
+\p(X=8) = \dfrac{5}{36} \quad & \quad \p(X=9) = \dfrac{4}{36} \\
+\p(X=10) = \dfrac{3}{36} \quad & \quad \p(X=11) = \dfrac{2}{36} \\
+\p(X=12) = \dfrac{1}{36} \quad & {}
+\end{align*}
+\end{exemple}
+
+\begin{exemple}[Exercice]{}
+Donner un exemple de variables aléatoires distinctes qui ont même loi.
+\end{exemple}
+
+\subsection{Espérance et variance d'une variable aléatoire réelle}
+
+\subsubsection{Espérance}
+
+\begin{definition}{Espérance}{}
+Soit $X$ une variable aléatoire réelle, définie sur un univers probabilisé fini $(\Omega, \p)$. L'\Strong{espérance} de $X$, encore appelée \strong{valeur moyenne} de $X$, est le réel noté $\E(X)$ défini par : 
+\begin{center}
+$\E(X) = \displaystyle \sum_{x \in X(\Omega)} x\p(X=x)$
+\end{center}
+\end{definition}
+
 \end{document}
