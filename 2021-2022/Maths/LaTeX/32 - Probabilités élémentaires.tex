@@ -1701,5 +1701,62 @@ $\displaystyle \sum_{k > \ell} \cov(X_k,X_\ell) = \sum_{k>\ell} \cov(X_\ell,X_k)
 \end{center}
 la dernière égalité est obtenue en permutant les indices $k$ et $\ell$.
 \end{demo}
+
+\begin{remarque}{}
+Dans le cas de deux variables aléatoires $X$ et $Y$, on a :
+\begin{center}
+$V(X+Y) = V(X)+V(Y) + 2 \cov(X,Y)$
+\end{center}
+En changeant $Y$ en $-Y$, on obtient $V(X-Y) = V(X)+V(Y)-2 \cov(X,Y)$, d'où 
+\begin{center}
+$4\cov(X,Y) = V(X+Y) - V(X-Y)$
+\end{center}
+et 
+\begin{center}
+$2(V(X)+V(Y)) = V(X+Y)+V(X-Y)$
+\end{center}
+\end{remarque}
+
+\begin{proposition}{}
+Si les variables aléatoires réelles $X_1,\cdots,X_n$ sont indépendantes, alors 
+\begin{center}
+$V(X_1+\cdots+X_n) = V(X_1) + \cdots + V(X_n)$
+\end{center}
+\end{proposition}
+
+\begin{demo}{}
+C'est immédiat en notant que l'indépendance entraîne l'indépendance deux à deux.
+\end{demo}
+
+\begin{exemple}{}
+Soit $n$ un entier non nul, $X_1,\cdots,X_n$ des variables aléatoires indépendantes qui suivent toutes la loi de Bernoulli de paramètre $p$. On sait que la somme $X$ des $X_i$ suit une loi binomiale de paramètre $(n,p)$. Comme les $X_i$ sont indépendantes, on a 
+\begin{center}
+$V(X)=\displaystyle \sum_{k=1}^n V(X_k) = \sum_{k=1}^n pq = npq$
+\end{center}
+avec $q= 1-p$. On en déduit que pour toute variable aléatoire $Y$ telle que $Y \hookrightarrow \mathcal{B}(n,p)$, on a $V(Y) = npq$, sans calcul !
+\end{exemple}
+
+\begin{exemple}{}
+Soit $\varepsilon > 0$, $n$ un entier non nul, $X_1,\cdots,X_n$ des variables aléatoires indépendantes qui suivent toutes la loi de Bernoulli de paramètre $p$. On modélise ainsi une suite de $n$ lancers de indépendants à pile ou face, avec une probabilité $p$ d'apparition de pile à chaque lancer. La fréquence des piles dans la suite de $n$ lancers est 
+\begin{center}
+$S_n = \dfrac{1}{n} \displaystyle \sum_{k=1}^n X_k$
+\end{center}
+
+On a par linéarité de l'espérance 
+\begin{center}
+$\E(S_n) = \dfrac{1}{n} \displaystyle \sum_{k=1}^n \E(X_k) = p$.
+\end{center}
+
+Puisque les $X_i$ sont indépendantes, on a 
+\begin{center}
+$V(S_n) = \displaystyle \dfrac{1}{n^2} V\left(\sum_{k=1}^n X_k\right) = \dfrac{1}{n^2} \sum_{k=1}^n  \E(X_k) = \dfrac{pq}{n}$
+\end{center}
+L'inégalité de \textsc{Bienaymé-Tchebychev} donne :
+\begin{center}
+$\p(\{\abs{S_n-p}\} \ge \varepsilon) \le \dfrac{pq}{n\varepsilon^2}$
+\end{center}
+
+On voit donc que si $n$ est suffisamment grand, il est très peu probable que la fréquence des pile s'écarte de la probabilité $p$ de plus de $\varepsilon$. Notre approche fréquentielle de la probabilité est en partie justifiée.
+\end{exemple}
 	
 \end{document}
