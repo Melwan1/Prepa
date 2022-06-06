@@ -1758,5 +1758,59 @@ $\p(\{\abs{S_n-p}\} \ge \varepsilon) \le \dfrac{pq}{n\varepsilon^2}$
 
 On voit donc que si $n$ est suffisamment grand, il est très peu probable que la fréquence des pile s'écarte de la probabilité $p$ de plus de $\varepsilon$. Notre approche fréquentielle de la probabilité est en partie justifiée.
 \end{exemple}
+
+\subsection{Couples de variables aléatoires}
+Il s'agit d'un petit paragraphe, essentiellement de vocabulaire.
+
+\begin{definition}{Couple de variables aléatoires}{}
+Soit $(\Omega, \p)$ un espace probabilisé fini. Si $X$ et $Y$ sont deux variables aléatoires sur $\Omega$, à valeurs dans les ensembles $E$ et $F$, l'application $Z$ de $\Omega$ dans $E \times F$ définie par 
+\begin{center}
+$\forall \omega \in \Omega, Z(\Omega) = (X(\omega), Y(\omega))$
+\end{center}
+s'appelle un \Strong{couple de variables aléatoires} sur $\Omega$ (terminologie officielle)
+\end{definition}
+
+La belle affaire : un couple de variables aléatoires est tout simplement une variable aléatoire à valeurs dans un produit cartésien. \\
+
+Avec les notations de la définition, on a $Z(\Omega) \subset X(\Omega) \times Y(\Omega)$ (et l'inclusion peut être stricte, comme on l'a déjà vu). La loi de $Z$ est donc déterminée par la connaissance, pour $(x,y) \in X(\Omega) \times Y(\Omega)$ de la probabilité $\p(Z=(x,y))$. \\
+Or il est clair que l'événement $Z=(x,y)$ n'est autre que $\{X=x\} \cap \{Y=y\}$. La loi de $Z$ est donc déterminée par la connaissance de la famille $(p_{x,y})_{(x,y) \in X(\Omega) \times Y(\omega)}$, où on a noté 
+\begin{center}
+$p_{x,y} = \p(X=x,Y=y)$
+\end{center}
+
+La loi de $Z$ s'appelle la \Strong{loi conjointe} du couple $(X,Y)$. \\
+
+Les lois des variables aléatoires $X$ et $Y$ s'appellent les \Strong{lois marginales} du couple $(X,Y)$. En utilisant le système complet d'événement $(\{Y=y\})_{y \in Y(\Omega)}$, on a, pour tout $x \in X(\omega)$ :
+\begin{center}
+$\p(X=x) = \displaystyle \sum_{y\in Y(\Omega)} \p(\{X=x\} \cap \{Y=y\}) = \sum_{y \in Y(\omega)} p_{x,y}$
+\end{center}
+
+De même, pour tout $y$ appartenant à $Y(\Omega)$,
+\begin{center}
+$\p(Y=y) = \displaystyle \sum_{x \in X(\omega)} p_{x,y}$
+\end{center}
+
+Ces relations montrent que la loi conjointe détermine de façon unique les lois marginales. L'inverse est faux, comme le montre l'exemple suivant :
+
+\begin{exemple}{}
+Soient $X$ et $Y$ deux variables aléatoires indépendantes qui suivent la loi de Bernoulli de paramètre $p = 0.5$. Vérifiez que les couples $(X,Y)$ et $(X,1-X)$ ont mêmes lois marginales, mais des lois conjointes différentes.
+\end{exemple}
+
+Lorsque $X$ et $Y$ sont indépendantes, on a, pour $(x,y) \in X(\Omega) \times Y(\Omega)$ : 
+\begin{center}
+$p_{x,y} = \p(X=x)\p(Y=y)$
+\end{center}
+
+On voit donc que dans ce cas, les lois marginales déterminent la loi conjointe. \\
+
+Fixons à présent $y \in Y(\Omega)$, et supposons que $\p(Y=y) \ne 0$. On appelle \strong{loi conditionnelle de $X$ sachant $Y$} la loi de $X$ dans l'espace probabilisé $(\Omega, \p_\{Y=y\})$. Cette loi est donc déterminée par la connaissance, pour tout $x \in X(\Omega)$, de la probabilité $\p_\{Y = y\}(X=x)$. \\
+
+On définir de même la loi conditionnelle de $Y$ sachant $\{X=x\}$ (pour $x \in X(\Omega)$ tel que $\p(X=x) \ne 0$). \\
+
+Si, pour tout $(x,y) \in X(\Omega) \times Y(\Omega)$, on a $\p(X=x \ne 0)$ et $\p(Y=y) \ne 0$, on a tout de suite les relations (issues de la formules des probabilités totales) : 
+\begin{center}
+$\forall x \in X(\Omega), \p(X=x) = \displaystyle \sum_{y \in Y(\Omega)} \p(Y=y)\p(X=x \mid Y=y)$ \\
+$\forall y \in Y(\Omega), \p(Y=y) = \displaystyle \sum_{x \in X(\Omega)} \p(X=x)\p(Y=y \mid X=x)$
+\end{center}
 	
 \end{document}
