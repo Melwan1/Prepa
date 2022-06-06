@@ -1552,8 +1552,52 @@ $A_I = \displaystyle \bigcap_{\ell \in I} \{X_\ell = 1\} \cap \bigcap_{\ell \in 
 
 Par indépendance de $X_1,\cdots,X_n$, on a tout de suite : 
 \begin{center}
-$\p(A_I) = \displaystyle \prod_{\ell \in I} \p(X_\ell = 1) \times \prod_{\ell \in I^c} \p(X_\ell = 0) = \prod_{\ell \in I} p \prod_{\ell \in I^c} (1-p) = p^k(1-p)^k$
+$\p(A_I) = \displaystyle \prod_{\ell \in I} \p(X_\ell = 1) \times \prod_{\ell \in I^c} \p(X_\ell = 0) = \prod_{\ell \in I} p \prod_{\ell \in I^c} (1-p) = p^k(1-p)^{n-k}$
 \end{center}
+
+L'événement $\{X=k\}$ est la réunion disjointe des divers événements $A_I$ obtenus pour $I$ décrivant l'ensemble des parties à $k$ éléments de $\{1,\cdots, n\}$. On en déduit :
+\begin{center}
+$\p(X=k) = \displaystyle \sum_{I \in \mathcal{P}_k(n)} \p(A_I) = \sum_{I \in \mathcal{P}_k(n)} p^k(1-p)^{n-k} = \binom{n}{k} p^k (1-p)^{n-k}$
+\end{center}
+
+Ainsi, $X$ suit une loi binomiale de paramètres $n$ et $p$. \\
+
+On voit d'autre part (linéarité de l'espérance) que 
+\begin{center}
+$\E(X) = \displaystyle \sum_{i=1}^n \E(X_i) = \sum_{i=1}^n p = np$.
+\end{center}
+
+on retrouve ainsi facilement qu'une variable aléatoire qui suit une loi binomiale de paramètres $n$ et $p$ a pour espérance $np$.
 \end{exemple}
+
+\begin{proposition}{}{}
+Soient $X$ et $Y$ deux variables aléatoires indépendantes qui suivent une loi binomiale de paramètres $(m,p)$ et $(n,p)$ (avec le même $p$), alors $X+Y$ suit une loi binomiale de paramètre $(m+n,p)$.
+\end{proposition}
+
+\begin{demo}{}
+Il est clair que $X+Y$ est à valeurs dans $\{0,\cdots,n+m\}$. Pour $k \in \{0,\cdots,n+m\}$, l'événement $\{X+Y = k\}$ est réunion disjointe des événements $\{X=\ell\} \cap \{Y = k-\ell\}$ pour $\ell$ variant entre $0$ et $k$. On a alors, en utilisant l'indépendance : 
+\begin{center}
+$\p(X+Y=k) = \displaystyle \sum_{\ell = 0}^k \p(X=\ell,Y=k-\ell) = \sum_{\ell = 0}^k \p(X=\ell) \p(Y=k-\ell)$
+\end{center}
+ce qui permet de constater que la loi de $X+Y$ ne dépend que des lois de $X$ et $Y$. On peut alors éviter les calculs, de la façon suivante : \\
+Soient $X_1,\cdots,X_{n+m}$ des variables aléatoires indépendantes qui suivent toutes la loi de Bernoulli de paramètre $p$. Soit $U = X_1 + \cdots X_n$ et $V = X_{n+1},\cdots,X_{n+m}$. D'après l'exemple précédent, $U$ est une somme de $n$ variables aléatoires indépendantes qui suivent toutes la loi $\mathcal{B}(p)$, donc suit une loi binomiale de paramètre $(n,p)$ (comme $X$), $V$ est somme de $m$ variables aléatoires indépendantes qui suivent toutes la loi $\mathcal{B}(p)$, donc suit une loi binomiale de paramètre $(m,p)$ (comme $Y$). $U$ et $V$ sont indépendantes (d'après le lemme des coalitions). Enfin, $U+V$ suit une loi de paramètre $(m+n,p)$ (car $U+V$ est somme de $n+m$ variables aléatoires indépendantes de loi $\mathcal{B}(p)$). On en déduit que $X+Y$ (comme $U+V$) suit une loi binomiale de paramètre $(m+n,p)$.
+\end{demo}
+
+\begin{exemple}[Exercice 17]{}
+Prouver la proposition précédente par le calcul.
+\end{exemple}
+
+On obtient alors facilement par récurrence : 
+\begin{corollaire}{}{}
+Si $X_1,\cdots,X_n$ sont des variables aléatoires indépendantes telles que $X_i \hookrightarrow \mathcal{B}(m_i,p)$, alors $X_1 + \cdots + X_n$ suit la loi binomiale de paramètre $(\sum_{i=1}^n m_i,p)$. 
+\end{corollaire}
+
+Terminons par une propriété très importante, impliquée par l'indépendance :
+\begin{theoreme}{}{}
+Soient $X_1,\cdots,X_n$ des variables aléatoires réelles indépendantes. On a :
+\begin{center}
+$\E\left(\prod_{k=1}^n X_k\right) = \prod_{k=1}^n \E(X_k)$
+\end{center}
+\end{theoreme}
 	
 \end{document}
