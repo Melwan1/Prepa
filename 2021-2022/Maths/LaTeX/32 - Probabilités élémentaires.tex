@@ -1650,6 +1650,56 @@ Soient $X$ et $Y$ des variables aléatoires réelles. Pour tout réel $t$, on a 
 V(tX+Y) = \cov(tX+Y,tX+Y) &= t^2 \cov(X,X) + t \cov (X,Y) + t \cov (Y,X) + \cov(Y,Y) \\
 &= \underbrace{t^2 V(X) + 2t \cov(X,Y) + V(Y)}_{=P(t)}
 \end{align*}
+
+Si $V(X) = 0$, $P$ est une fonction affine de $t$, toujours positive, ce qui implique un coefficient directeur nul, \ie $\cov(X,Y) = 0$, et on a bien l'inégalité. \\
+
+Si $V(X) > 0$, alors $P$ est polynomiale de degré $2$ en $t$, toujours positive, donc ne peut avoir deux racines réelles distinctes, ce qui implique $\Delta(P) \le 0$, c'est-à-dire que
+\begin{center}
+$(\cov(X,Y))^2 \le V(X)V(Y)$
+\end{center}
+d'où l'inégalité en prenant la racine carrée. \\
+
+Si de plus, il y a égalité dans ce cas, alors $\Delta(P) = 0$, et $P$ a une racine double $\lambda$. \\
+
+On a alors $V(\lambda X + Y) = 0$, ce qui équivaut à l'existence d'un réel $\mu$ tel que $Y + \lambda X = \mu$ presque sûrement. \\
+
+Réciproquement, si $Y = \alpha X + \beta$ presque sûrement, avec $\alpha$ et $\beta$ réels, on a $V(Y-\alpha X) = 0$, et $-\alpha$ est racine de $P$, d'où $\Delta(P) = 0$.
+\end{demo}
+
+\begin{remarque}[Remarque (coefficient de corrélation)]{}
+On a vu que si $X$ et $Y$ sont des variables aléatoires réelles indépendantes alors $\abs{\cov(X,Y)}$ est minimale (et vaut 0). Si au contraire $Y$ dépend affinement de $X$, alors $\abs{\cov(X,Y)}$ est maximale (et vaut $\sigma(X)\sigma(Y)$). On a là une sorte de mesure du degré de dépendance entre $X$ et $Y$. \\
+Lorsque $X$ et $Y$ sont telles que $V(X) > 0$ et $V(Y) > 0$, on pose 
+\begin{center}
+$\rho(X,Y) = \dfrac{\cov(X,Y)}{\sigma(X)\sigma(Y)}$
+\end{center}
+C'est le \Strong{coefficient de corrélation} de $X$ et $Y$, c'est un réel de l'intervalle $[-1,1]$. Sa valeur absolue est d'autant plus proche de $1$ que $X$ et $Y$ sont dépendantes.
+\end{remarque}
+
+Par bilinéarité et symétrie, on a tout de suite :
+\begin{proposition}{}{}
+Si $X_1,\cdots,X_n$ sont des variables aléatoires réelles, 
+\begin{center}
+$\displaystyle V\left(\sum_{k=1}^n X_k\right) = \sum_{k=1}^n V(X_k) + 2 \sum_{1 \le k < \ell \le n} \cov(X_k,X_\ell)$
+\end{center}
+\end{proposition}
+
+\begin{demo}{}
+On a :
+\begin{align*}
+V\left(\sum_{k=1}^n X_k\right) &= \cov\left(\sum_{k=1}^n X_k,\sum_{\ell = 1}^n X_\ell\right) \\
+&= \sum_{1 \le k,\ell \le n} \cov (X_k,X_\ell) \quad \text{par bilinéarité} \\
+&= \sum_{k=1}^n \cov(X_k,X_k) + \sum_{k \ne \ell} \cov(X_k,X_\ell)
+\end{align*}
+
+Ensuite, on a 
+\begin{center}
+$\displaystyle \sum_{k \ne \ell} \cov(X_k,X_\ell) = \sum_{k<\ell} \cov(X_k,X_\ell) + \sum_{k>\ell} \cov(X_k,X_\ell)$
+\end{center}
+En utilisant la symétrie,
+\begin{center}
+$\displaystyle \sum_{k > \ell} \cov(X_k,X_\ell) = \sum_{k>\ell} \cov(X_\ell,X_k) = \sum_{k<\ell} \cov(X_k,X_\ell)$
+\end{center}
+la dernière égalité est obtenue en permutant les indices $k$ et $\ell$.
 \end{demo}
 	
 \end{document}
