@@ -1502,5 +1502,58 @@ On dit que $X_1 , \cdots, X_n$ sont \Strong{indépendantes} lorsque quelles que 
 \end{definition}
 
 Comme dans le cas de deux variables (preuves similaires), on a les faits suivants :
+
+\begin{proposition}{}{}
+Avec les notations de la définition, les variables aléatoires $X_1,\cdots,X_n$ sont indépendantes si et seulement si pour tout $(x_1,\cdots,x_n)$ élément de $X_1(\Omega) \times \cdots \times X_n(\Omega)$, les événements $\{X_1=x_1\}, \cdots, \{X_n = x_n\}$ sont indépendants.
+\end{proposition}
+
+\begin{remarque}{}
+Il est clair que l'indépendance des variables aléatoires $X_1,\cdots,X_n$ ne dépend pas de l'ordre d'énumération. Il est tout aussi clair que si $X_1,\cdots,X_n$ sont indépendantes, il en est de même des variables aléatoires $X_1,\cdots,X_p$ pour tout entier $p \le n$, et en particulier ces variables aléatoires sont deux à deux indépendantes.
+\end{remarque}
+
+\begin{proposition}{}{}
+Si $X_1,\cdots,X_n$ sont des variables aléatoires indépendantes à valeurs dans les ensembles $E_1,\cdots,E_n$, et si on dispose, pour $1 \le i \le n$, d'une fonction $f_i$ définie sur $E_i$, alors les variables aléatoires $f_1(X_1), \cdots,f_n(X_n)$ sont indépendantes.
+\end{proposition}
+
+\begin{theoreme}{Lemme des coalitions}{}
+Soient $X_1,\cdots,X_n$ des variables aléatoires indépendantes, à valeurs dans les ensembles $E_1,\cdots,E_n$, et $p$ un entier compris entre $1$ et $n-1$. Soit $f$ une fonction définie sur $E_1\times \cdots \times E_p$ et $g$ une fonction définie sur $E_{p+1}\times \cdots\times E_n$. Alors les variables $f(X_1,\cdots,X_p)$ et $g(X_{p+1},\cdots,X_n)$ sont indépendantes.
+\end{theoreme}
+
+\begin{demo}{}
+Soient $X = (X_1,\cdots,X_p)$ et $Y = (X_{p+1},\cdots,X_n)$, ce sont des variables aléatoires à valeurs dans les ensembles $E=E_1\times \cdots \times E_p$ et $F = E_{p+1} \times \cdots \times E_n$. Il suffit de voir que $X$ et $Y$ sont indépendantes. \\
+
+On a $X(\Omega) \subset X_1(\Omega) \times \cdots \times X_p(\Omega)$, et $Y(\Omega) \subset X_{p+1}(\Omega) \times \cdots \times X_n(\Omega)$. \\
+
+De plus, pour $x=(x_1,\cdots,x_p) \in X(\Omega)$ et $y=(x_{p+1},\cdots,x_n) \in Y(\Omega)$,  on a 
+\begin{align*}
+\p(X=x,Y=y) &= \p(X_1=x_1,\cdots,X_n=x_n) \\
+&= \prod_{k=1}^n \p(X_i=x_i) \\
+&= \p(X=x)\p(Y=y)
+\end{align*}
+\end{demo}
+
+\begin{remarque}{}
+Le théorème précédent est valable avec plusieurs "paquets", pas seulement deux. Il nous dit par exemple que si $X,Y,Z,T$ sont des variables aléatoires indépendantes, alors $X^2+Y$ et $e^Z\sin T$ sont indépendantes. On aura aussi $X^2,Y+T,\cos Z$ sont indépendantes (3 paquets).
+\end{remarque}
+
+\begin{proposition}{}{}
+Si on se donne $(E_1,\Q_1), \cdots, (E_n,\Q_n)$ des espaces probabilisés finis, il existe des variables aléatoires $X_1,\cdots,X_n$ définies sur un certain espace probabilisé $(\Omega,\p)$, indépendantes, avec $X_i$ à valeurs dans $E_i$, telles que $\p_{X_i} = \Q_i$ pour $1 \le i \le n$.
+\end{proposition}{}
+
+En particulier, pour tout entier $n$, il existe $n$ variables aléatoires indépendantes de même loi.
+
+\begin{exemple}{}
+Considérons $n$ variables aléatoires indépendantes $X_1,\cdots,X_n$ (définies sur un certain espace probabilisé $(\Omega, \p)$), qui suivent toutes la loi de Bernoulli de paramètre $p$, et considérons $X = X_1+\cdots, X_n$. Il est clair que $X$ est à valeurs dans $\{0,\cdots,n\}$. \\
+
+Soit $k$ un entier compris entre $0$ et $n$. Pour $\omega \in \Omega$, on a $X(\omega) = k$ si et seulement si exactement $k$ des nombres $X_1(\omega), \cdots, X_n(\Omega)$ valent 1 (et les autres 0). Pour toute partie $I$ finie de cardinal $k$ de $\{1,\cdots,n\}$, de complémentaire $I^c$, notons $A_I$ l'événement 
+\begin{center}
+$A_I = \displaystyle \bigcap_{\ell \in I} \{X_\ell = 1\} \cap \bigcap_{\ell \in I^c} \{X_\ell = 0\}$
+\end{center}
+
+Par indépendance de $X_1,\cdots,X_n$, on a tout de suite : 
+\begin{center}
+$\p(A_I) = \displaystyle \prod_{\ell \in I} \p(X_\ell = 1) \times \prod_{\ell \in I^c} \p(X_\ell = 0) = \prod_{\ell \in I} p \prod_{\ell \in I^c} (1-p) = p^k(1-p)^k$
+\end{center}
+\end{exemple}
 	
 \end{document}
