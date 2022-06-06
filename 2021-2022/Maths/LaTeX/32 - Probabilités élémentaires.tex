@@ -6,6 +6,7 @@
 
 \newcommand{\p}{\mathbb{P}}
 \newcommand{\E}{\mathbb{E}}
+\newcommand{\cov}{\text{cov}}
 
 \section*{Introduction}
 
@@ -1599,5 +1600,56 @@ Soient $X_1,\cdots,X_n$ des variables aléatoires réelles indépendantes. On a 
 $\E\left(\prod_{k=1}^n X_k\right) = \prod_{k=1}^n \E(X_k)$
 \end{center}
 \end{theoreme}
+
+\begin{demo}{}
+On procède par récurrence. Pour $n=1$, il n'y a rien à prouver, et on a déjà prouvé le résultat pour $n=2$. \\
+
+Si $n$ est un entier supérieur ou égal à 2 pour lequel le résultat est vrai, et si on considère $X_1,\cdots,X_{n+1}$ des variables aléatoires indépendantes réelles, il suffit d'observer que $X_1\cdots X_n$ et $X_{n+1}$ sont indépendantes par le lemme des coalitions. On a alors, en utilisant le résultat pour deux variables aléatoires réelles :
+\begin{center}
+$\E\left(\prod_{k=1}^{n+1} X_k\right) = \E\left(X_{n+1} \prod_{k=1}^n X_k\right) = \E(X_{n+1}) \E\left(\prod_{k=1}^n X_k\right)$
+\end{center}
+
+Comme $X_1,\cdots,X_n$ sont indépendantes, on peut utiliser l'hypothèse de récurrence, ce qui donne le résultat.
+\end{demo}
+
+\subsection{Covariance}
+
+\begin{definition}{Covariance}{}
+Soient $X$ et $Y$ deux variables aléatoires réelles, définies sur un espace probabilisé fini $(\Omega, \p)$. \\
+
+On appelle \Strong{covariance} de $X$ et $Y$, et on note $\cov(X,Y)$ le réel
+\begin{center}
+$\cov(X,Y) = \E((X-\E(X))(Y-\E(Y)))$
+\end{center}
+\end{definition}
+
+On a les propriétés suivantes de la covariance : 
+\begin{proposition}{}{}
+Soit $(\Omega, \p)$ un espace probabilisé fini. Il est clair que cov définit une application de $\R^\Omega \times \R^\Omega$ dans $\R$.
+\begin{enumerate}
+\item Pour toute variable aléatoire réelle $X$, $V(X) = \cov(X,X)$.
+\item Si $X$ et $Y$ sont des variables aléatoires réelles, $\cov(X,Y) = \E(XY) - \E(X)\E(Y)$
+\item Si $X$ et $Y$ sont des variables aléatoires réelles indépendantes, alors $\cov(X,Y) = 0$.
+\item $\cov$ est bilinéaire.
+\item $\cov$ est symétrique : si $X$ et $Y$ sont des variables aléatoires réelles, alors $\cov(X,Y) = \cov(Y,X)$.
+\item Si $X$ est une variable aléatoire réelle, $\cov(X,X) = V(X) = \ge 0$.
+\item Inégalité de \textsc{Cauchy-Schwarz} : si $X,Y$ sont des variables aléatoires réelles, 
+\begin{center}
+$\abs{\cov(X,Y)} \le \sigma(X) \sigma(Y)$
+\end{center}
+Si $V(X) > 0$, il y a égalité si et seulement si il existe des réels $\alpha$ et $\beta$ tels que $Y = \alpha X + \beta$ presque sûrement.
+\end{enumerate}
+\end{proposition}
+
+\begin{demo}{}
+Les six premières assertions sont des exercices (faciles). La première est un peu l'analogue de la formule de Koenig-Huygens. \\
+
+Prouvons l'inégalité. \\
+Soient $X$ et $Y$ des variables aléatoires réelles. Pour tout réel $t$, on a $V(tX+Y) \ge 0$. D'autre part, en utilisant la bilinéarité,
+\begin{align*}
+V(tX+Y) = \cov(tX+Y,tX+Y) &= t^2 \cov(X,X) + t \cov (X,Y) + t \cov (Y,X) + \cov(Y,Y) \\
+&= \underbrace{t^2 V(X) + 2t \cov(X,Y) + V(Y)}_{=P(t)}
+\end{align*}
+\end{demo}
 	
 \end{document}
